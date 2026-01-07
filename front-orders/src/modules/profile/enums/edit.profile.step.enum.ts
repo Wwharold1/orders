@@ -1,0 +1,7 @@
+export enum EditProfileStepEnum {
+  VALIDATE_PASSWORD = 0,
+  EDIT_DATA = 1,
+  VALIDATE_EMAIL = 2,
+  VALIDATE_PHONE = 3,
+  UPDATE_PASSWORD = 4,
+}

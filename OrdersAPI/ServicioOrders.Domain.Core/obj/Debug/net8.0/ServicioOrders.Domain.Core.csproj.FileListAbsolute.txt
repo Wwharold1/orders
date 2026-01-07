@@ -1,0 +1,12 @@
+C:\Users\User\source\repos\Order\OrdersAPI\ServicioOrders.Domain.Core\bin\Debug\net8.0\ServicioOrders.Domain.Core.deps.json
+C:\Users\User\source\repos\Order\OrdersAPI\ServicioOrders.Domain.Core\bin\Debug\net8.0\ServicioOrders.Domain.Core.dll
+C:\Users\User\source\repos\Order\OrdersAPI\ServicioOrders.Domain.Core\bin\Debug\net8.0\ServicioOrders.Domain.Core.pdb
+C:\Users\User\source\repos\Order\OrdersAPI\ServicioOrders.Domain.Core\obj\Debug\net8.0\ServicioOrders.Domain.Core.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\Order\OrdersAPI\ServicioOrders.Domain.Core\obj\Debug\net8.0\ServicioOrders.Domain.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\source\repos\Order\OrdersAPI\ServicioOrders.Domain.Core\obj\Debug\net8.0\ServicioOrders.Domain.Core.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\Order\OrdersAPI\ServicioOrders.Domain.Core\obj\Debug\net8.0\ServicioOrders.Domain.Core.AssemblyInfo.cs
+C:\Users\User\source\repos\Order\OrdersAPI\ServicioOrders.Domain.Core\obj\Debug\net8.0\ServicioOrders.Domain.Core.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\Order\OrdersAPI\ServicioOrders.Domain.Core\obj\Debug\net8.0\ServicioOrders.Domain.Core.dll
+C:\Users\User\source\repos\Order\OrdersAPI\ServicioOrders.Domain.Core\obj\Debug\net8.0\refint\ServicioOrders.Domain.Core.dll
+C:\Users\User\source\repos\Order\OrdersAPI\ServicioOrders.Domain.Core\obj\Debug\net8.0\ServicioOrders.Domain.Core.pdb
+C:\Users\User\source\repos\Order\OrdersAPI\ServicioOrders.Domain.Core\obj\Debug\net8.0\ref\ServicioOrders.Domain.Core.dll

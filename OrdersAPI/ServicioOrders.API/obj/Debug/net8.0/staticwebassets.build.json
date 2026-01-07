@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "sCIckcby7WDqWZLAT1uqiyxFG2ro+tYzkjG/GoOt0/s=",
+  "Source": "ServicioOrders.API",
+  "BasePath": "_content/ServicioOrders.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

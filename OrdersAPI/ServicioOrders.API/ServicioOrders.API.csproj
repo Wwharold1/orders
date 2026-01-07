@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>caee965f-0a34-4fb9-9b77-e55ff1afd63b</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="8.0.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="FluentValidation" Version="11.9.2" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.8" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Templates\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ServicioOrders.Application\ServicioOrders.Application.csproj" />
+    <ProjectReference Include="..\ServicioOrders.Domain\ServicioOrders.Domain.csproj" />
+    <ProjectReference Include="..\ServicioOrders.Infrastructure.CrossCutting.IoC\ServicioOrders.Infrastructure.CrossCutting.IoC.csproj" />
+    <ProjectReference Include="..\ServicioOrders.Infrastructure.CrossCutting.Services\ServicioOrders.Infrastructure.CrossCutting.Services.csproj" />
+    <ProjectReference Include="..\ServicioOrders.Infrastructure.CrossCutting.Utility\ServicioOrders.Infrastructure.CrossCutting.Utility.csproj" />
+    <ProjectReference Include="..\ServicioOrders.Infrastructure.Persistence\ServicioOrders.Infrastructure.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>

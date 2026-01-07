@@ -1,0 +1,15 @@
+C:\Users\User\source\repos\Order\OrdersAPI\ServicioOrders.Infrastructure.CrossCutting.Services\bin\Debug\net8.0\ServicioOrders.Infrastructure.CrossCutting.Services.deps.json
+C:\Users\User\source\repos\Order\OrdersAPI\ServicioOrders.Infrastructure.CrossCutting.Services\bin\Debug\net8.0\ServicioOrders.Infrastructure.CrossCutting.Services.dll
+C:\Users\User\source\repos\Order\OrdersAPI\ServicioOrders.Infrastructure.CrossCutting.Services\bin\Debug\net8.0\ServicioOrders.Infrastructure.CrossCutting.Services.pdb
+C:\Users\User\source\repos\Order\OrdersAPI\ServicioOrders.Infrastructure.CrossCutting.Services\bin\Debug\net8.0\ServicioOrders.Infrastructure.CrossCutting.Utility.dll
+C:\Users\User\source\repos\Order\OrdersAPI\ServicioOrders.Infrastructure.CrossCutting.Services\bin\Debug\net8.0\ServicioOrders.Infrastructure.CrossCutting.Utility.pdb
+C:\Users\User\source\repos\Order\OrdersAPI\ServicioOrders.Infrastructure.CrossCutting.Services\obj\Debug\net8.0\ServicioOrders.Infrastructure.CrossCutting.Services.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\Order\OrdersAPI\ServicioOrders.Infrastructure.CrossCutting.Services\obj\Debug\net8.0\ServicioOrders.Infrastructure.CrossCutting.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\source\repos\Order\OrdersAPI\ServicioOrders.Infrastructure.CrossCutting.Services\obj\Debug\net8.0\ServicioOrders.Infrastructure.CrossCutting.Services.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\Order\OrdersAPI\ServicioOrders.Infrastructure.CrossCutting.Services\obj\Debug\net8.0\ServicioOrders.Infrastructure.CrossCutting.Services.AssemblyInfo.cs
+C:\Users\User\source\repos\Order\OrdersAPI\ServicioOrders.Infrastructure.CrossCutting.Services\obj\Debug\net8.0\ServicioOrders.Infrastructure.CrossCutting.Services.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\Order\OrdersAPI\ServicioOrders.Infrastructure.CrossCutting.Services\obj\Debug\net8.0\Servicio.B8A6CB2E.Up2Date
+C:\Users\User\source\repos\Order\OrdersAPI\ServicioOrders.Infrastructure.CrossCutting.Services\obj\Debug\net8.0\ServicioOrders.Infrastructure.CrossCutting.Services.dll
+C:\Users\User\source\repos\Order\OrdersAPI\ServicioOrders.Infrastructure.CrossCutting.Services\obj\Debug\net8.0\refint\ServicioOrders.Infrastructure.CrossCutting.Services.dll
+C:\Users\User\source\repos\Order\OrdersAPI\ServicioOrders.Infrastructure.CrossCutting.Services\obj\Debug\net8.0\ServicioOrders.Infrastructure.CrossCutting.Services.pdb
+C:\Users\User\source\repos\Order\OrdersAPI\ServicioOrders.Infrastructure.CrossCutting.Services\obj\Debug\net8.0\ref\ServicioOrders.Infrastructure.CrossCutting.Services.dll
