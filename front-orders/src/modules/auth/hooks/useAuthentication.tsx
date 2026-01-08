@@ -5,33 +5,16 @@ import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { persistStore } from 'redux-persist';
 
-import { notifyError, notifyInfo } from '@/common/components/Notify';
+import { notifyError } from '@/common/components/Notify';
 import {
-  ContextRoutesEnum,
   ContextSidebarEnum,
   ContextSplashEnum,
-  SpectrumDocumentType,
 } from '@/common/enums';
 import {
-  CreatePasswordErrorsDictionary,
   LoginErrorsDictionary,
-  PasswordRegistrationErrorsDictionary,
-  SearchCollaboratorErrorsDictionary,
-  SendCodeRecoveryErrorsDictionary,
-  SendEmailCreateErrorsDictionary,
-  UpdateEmailCustomerErrorsDictionary,
 } from '@/common/enums/custom-errors.dictionary';
-import { countryCodesMapping } from '@/common/helper/countryCodes';
 import { removeQueryParams } from '@/common/helper/queryParams';
-import { sendGMT } from '@/common/helper/sendGMT';
 import { useAppDispatch } from '@/common/hooks/redux-hooks';
-import { useStateCallback } from '@/common/hooks/useStateCallback';
-import { useStatePersist } from '@/common/hooks/useStatePersist';
-import {
-  IRegisterEmail,
-  IUpdatePasswordRegistration,
-} from '@/common/interfaces';
-import { GMTEnum } from '@/modules/auth/enums/gmt.enum';
 import {
   createPasswordSchema,
   documentValidationSchema,
@@ -61,45 +44,11 @@ import { useGoogleRecaptcha } from '@/modules/auth/hooks/useGoogleRecaptcha';
 import { deleteAuth } from '@/modules/auth/slice/authSlice';
 import { persistor, store } from '@/redux';
 import { setSidebar, setSplash } from '@/redux/common/layoutSlice';
-import { SpectrumService } from '@/services';
-
-import {
-  RegisterEmailErrorsDictionary,
-  ValidateRecoverErrorsDictionary,
-} from '../../../common/enums/custom-errors.dictionary';
 import { AuthService } from '../../../services/AuthService';
 
 export const useAuthentication = () => {
   const { handleReCaptchaVerify } = useGoogleRecaptcha();
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [isOpenResend, setIsOpenResend] = useStateCallback<boolean>(false);
-  const [isOpenNoFunds, setIsOpenNoFunds] = useStateCallback<boolean>(false);
-  const [openInvalidModal, setOpenInvalidModal] =
-    useStateCallback<boolean>(false);
-  const [openFormDocument, setOpenFormDocument] =
-    useStateCallback<boolean>(false);
-  const [openExistentModal, setOpenExistentModal] =
-    useStateCallback<boolean>(false);
-  const [openNoExistModal, setOpenNoExistModal] =
-    useStateCallback<boolean>(false);
-  const [resetStep, setResetStep] = useStateCallback<number>(0);
-  const [isCollaborator, setIsCollaborator] = useStatePersist<string>(
-    '0',
-    'is-collaborator'
-  );
-  const [currentEmail, setCurrentEmail] = useStatePersist<string>(
-    localStorage.getItem('current-email') || '',
-    'current-email'
-  );
-  const [currentDNI, setCurrentDNI] = useStatePersist<string>(
-    '',
-    'current-dni'
-  );
-  const [currentTypeDocument, setCurrentTypeDocument] = useStatePersist<string>(
-    '',
-    'current-type-document'
-  );
   const router = useRouter();
   const dispatch = useAppDispatch();
 
@@ -277,31 +226,11 @@ export const useAuthentication = () => {
       createPasswordForm,
       sendProspectForm,
     },
-    resetStep,
-    currentEmail,
-    setIsCollaborator,
-    currentDNI,
-    isCollaborator,
-    currentTypeDocument,
     submitHandlers: {
       submitLogin,
     },
     loaders: {
       loadLogin,
-    },
-    modal: {
-      isOpenResend,
-      setIsOpenResend,
-      isOpenNoFunds,
-      setIsOpenNoFunds,
-      openInvalidModal,
-      openNoExistModal,
-      openExistentModal,
-      setOpenExistentModal,
-      setOpenInvalidModal,
-      setOpenNoExistModal,
-      openFormDocument,
-      setOpenFormDocument,
     },
     mutations: {
       logoutMutation,
