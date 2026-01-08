@@ -56,12 +56,6 @@ import {
   validateRecoverSchema,
   verifyAccountValidationSchema,
 } from '@/modules/auth/helpers/authValidationSchemas';
-import {
-  AutocaptureFacialStateEnum,
-  CollaboratorRegisterStepEnum,
-  FacialStateEnum,
-  RegisterStepEnum,
-} from '@/modules/auth/helpers/registerSteps';
 import { transformTimestamp } from '@/modules/auth/hooks/useErrorTimer';
 import { useGoogleRecaptcha } from '@/modules/auth/hooks/useGoogleRecaptcha';
 import { deleteAuth } from '@/modules/auth/slice/authSlice';
@@ -78,8 +72,6 @@ import { AuthService } from '../../../services/AuthService';
 export const useAuthentication = () => {
   const { handleReCaptchaVerify } = useGoogleRecaptcha();
 
-  const [resendEmailAttempt, setResendEmailAttempt] =
-    useStateCallback<number>(0);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [isOpenResend, setIsOpenResend] = useStateCallback<boolean>(false);
   const [isOpenNoFunds, setIsOpenNoFunds] = useStateCallback<boolean>(false);
@@ -92,17 +84,6 @@ export const useAuthentication = () => {
   const [openNoExistModal, setOpenNoExistModal] =
     useStateCallback<boolean>(false);
   const [resetStep, setResetStep] = useStateCallback<number>(0);
-  const [registerStep, setRegisterStep] = useStateCallback<
-    RegisterStepEnum | CollaboratorRegisterStepEnum
-  >(RegisterStepEnum.DOCUMENT_VALIDATION);
-  const [verifyAttempt, setVerifyAttempt] = useStateCallback<number>(3);
-  const [recoverTimer, setRecoverTimer] = useStateCallback<any>(null);
-  const [facialState, setFacialState] = useStateCallback<number>(
-    FacialStateEnum.INITIAL_VALIDATION
-  );
-  const [autocaptureState, setAutocaptureState] = useStateCallback<number>(
-    AutocaptureFacialStateEnum.BACK_DOCUMENT
-  );
   const [isCollaborator, setIsCollaborator] = useStatePersist<string>(
     '0',
     'is-collaborator'
@@ -183,233 +164,6 @@ export const useAuthentication = () => {
     mode: 'onChange',
   });
 
-  const { mutate: createPasswordMutation, isLoading: loadCreatePassword } =
-    useMutation(
-      (userData: TCreatePasswordForm) =>
-        dispatch(AuthService().createPasswordCustomer(userData)),
-      {
-        onSuccess(data, userData) {
-          if (data.payload.message) {
-            if (
-              data.payload.message === CreatePasswordErrorsDictionary.HASH_ERROR
-            ) {
-              setOpenInvalidModal(true);
-            }
-            if (
-              data.payload.message ===
-              CreatePasswordErrorsDictionary.ACCOUNT_EXIST
-            ) {
-              setOpenExistentModal(true);
-            }
-            if (
-              data.payload.message ===
-              CreatePasswordErrorsDictionary.EMAIL_NOT_EXIST
-            ) {
-              dispatch(
-                setSplash({
-                  show: true,
-                  type: ContextSplashEnum.AUTH_REGISTER_COMPLETED,
-                })
-              );
-              sendGMT(GMTEnum.REGISTRATION_COMPLETED, userData.transac_id); // Send GMT when success registration
-              setTimeout(() => {
-                router.push('/');
-              }, 5000);
-            }
-            setTimeout(() => {
-              router.push('/');
-            }, 3000);
-            return;
-          } else {
-            dispatch(
-              setSplash({
-                show: true,
-                type: ContextSplashEnum.AUTH_REGISTER_COMPLETED,
-              })
-            );
-            sendGMT(GMTEnum.REGISTRATION_COMPLETED, userData.transac_id); // Send GMT when success registration
-            setTimeout(() => {
-              router.push('/');
-            }, 5000);
-          }
-        },
-      }
-    );
-
-  const {
-    mutate: documentValidationMutation,
-    isLoading: loadDocumentValidation,
-  } = useMutation(
-    (userData: TDocumentValidationForm) =>
-      dispatch(SpectrumService().searchCollaborator(userData)),
-    {
-      onSuccess(data) {
-        if (data.payload.message) {
-          setVerifyAttempt(verifyAttempt - 1);
-          if (
-            data.payload.message ===
-            SearchCollaboratorErrorsDictionary.LIMIT_SHIPMENTS
-          ) {
-            notifyError({
-              title:
-                'Has alcanzado el límite de intentos posibles para enviar código de validación',
-            });
-            return;
-          }
-          if (
-            data.payload.message ===
-            SearchCollaboratorErrorsDictionary.EMAIL_ALREADY_VERIFIED
-          ) {
-            notifyError({
-              title: 'Ya existe una cuenta con este número de documento.',
-            });
-            return;
-          }
-          //user not found
-          setIsCollaborator('0');
-          setCurrentTypeDocument(
-            documentValidationForm.getValues('tipoIdentidad')
-          );
-          setCurrentDNI(documentValidationForm.getValues('numIdentidad'));
-
-          return;
-        }
-
-        setIsCollaborator('1');
-        if (data.payload.email && data.payload.email !== 'string') {
-          setCurrentEmail(data.payload.email);
-          verifyForm.setValue('email', data.payload.email);
-          setRegisterStep(
-            CollaboratorRegisterStepEnum.OPEN_IDENTITY_VALIDATION
-          );
-        } else {
-          updateEmailForm.setValue('id', data.payload.id);
-          updateEmailForm.setValue(
-            'code_unique_spectrum',
-            data.payload.code_unique_spectrum
-          );
-          updateEmailForm.setValue(
-            'type_document',
-            documentValidationForm.getValues('tipoIdentidad')
-          );
-          updateEmailForm.setValue(
-            'number_document',
-            documentValidationForm.getValues('numIdentidad')
-          );
-          setRegisterStep(CollaboratorRegisterStepEnum.EMAIL_REGISTRATION);
-        }
-        setCurrentTypeDocument(
-          documentValidationForm.getValues('tipoIdentidad')
-        );
-        setCurrentDNI(documentValidationForm.getValues('numIdentidad'));
-
-        return;
-      },
-    }
-  );
-
-  const { mutate: registerEmailMutation, isLoading: loadDocument } =
-    useMutation(
-      (data: IRegisterEmail) => dispatch(AuthService().register(data)),
-      {
-        onSuccess({ payload }) {
-          if (
-            payload.message === RegisterEmailErrorsDictionary.ALREADY_REGISTER
-          ) {
-            notifyError({
-              title: 'Ya existe una cuenta con este correo.',
-              subtitle: `Por favor ingrese uno nuevamente.`,
-            });
-            return;
-          }
-
-          setRegisterStep(RegisterStepEnum.EMAIL_VERIFICATION);
-          setCurrentEmail(payload.data.email);
-          verifyForm.setValue('email', payload.data.email);
-        },
-      }
-    );
-
-  const {
-    mutate: sendEmailValidationMutation,
-    isLoading: loadEmailValidation,
-  } = useMutation(
-    (data: IRegisterEmail) => dispatch(AuthService().register(data)),
-    {
-      onSuccess() {
-        if (resendEmailAttempt === 3) {
-          notifyError({
-            title:
-              'Has alcanzado el límite de intentos posibles para enviar código de validación',
-          });
-          return;
-        }
-        notifyInfo({
-          subtitle: `Código enviado`,
-        });
-        localStorage.removeItem('public-token');
-        setResendEmailAttempt(resendEmailAttempt + 1);
-        return;
-      },
-    }
-  );
-
-  const { mutate: verifyEmailMutation, isLoading: loadVerifyEmail } =
-    useMutation(
-      (userData: TVerifyForm) =>
-        dispatch(AuthService().verifyEmailCode(userData)),
-      {
-        onSuccess({ payload }) {
-          if (payload.message) {
-            notifyError({
-              title: 'Código no coincide',
-              subtitle: `Por favor, inténtalo de nuevo.`,
-            });
-            return;
-          }
-
-          dispatch(
-            setSplash({
-              show: true,
-              type: ContextSplashEnum.AUTH_EMAIL_VERIFIED,
-            })
-          );
-
-          verifyForm.resetField('code');
-          if (isCollaborator === '0') {
-            passwordRegistrationForm.setValue('id', payload.data.id);
-            passwordRegistrationForm.setValue(
-              'securityHash',
-              payload.data.securityHash
-            );
-            passwordRegistrationForm.setValue('email', payload.data.email);
-            setRegisterStep(RegisterStepEnum.NAME_VALIDATION);
-          } else {
-          
-          }
-        },
-      }
-    );
-
-  const { mutate: sendProspectMutation, isLoading: loadSendProspect } =
-    useMutation(
-      (userData: TSendProspectForm) =>
-        dispatch(AuthService().sendProspectForm(userData)),
-      {
-        onSuccess({ payload }) {
-          if (payload.data) {
-            setOpenFormDocument(false);
-            dispatch(
-              setSplash({
-                type: ContextSplashEnum.AUTH_PROSPECT_COMPLETED,
-                show: true,
-              })
-            );
-          }
-        },
-      }
-    );
-
   const { mutate: loginMutation, isLoading: loadLogin } = useMutation(
     (userData: TLoginForm) => dispatch(AuthService().login(userData)),
     {
@@ -485,175 +239,6 @@ export const useAuthentication = () => {
     }
   );
 
-  const { mutate: generateMutation, isLoading: loadGeneratePassword } =
-    useMutation(
-      (userData: TRecoverGenerateForm) =>
-        dispatch(AuthService().generateRecover(userData)),
-      {
-        onSuccess({ payload }) {
-          if (payload.message) {
-            if (
-              payload.message.includes(
-                SendCodeRecoveryErrorsDictionary.LIMIT_SHIPMENTS
-              )
-            ) {
-              notifyError({
-                title:
-                  'Has alcanzado el límite de intentos posibles para validar tu correo',
-                subtitle: `Por favor, contáctate a`,
-                bolded: 'backoffice@prudentialsaf.com.pe',
-              });
-              return;
-            }
-          }
-
-          setRecoverTimer(
-            Math.round(
-              (new Date(payload.data).getTime() - new Date().getTime()) / 1000
-            )
-          );
-          if (generateForm.getValues('resend')) {
-            notifyInfo({
-              subtitle: `Código enviado`,
-            });
-          }
-          setResetStep(1);
-          validateForm.setValue('email', generateForm.watch('email'));
-        },
-      }
-    );
-
-  const {
-    mutate: updatePasswordRegistrationMutation,
-    isLoading: loadPasswordRegistration,
-  } = useMutation(
-    (userData: IUpdatePasswordRegistration) =>
-      dispatch(AuthService().updatePasswordRegistration(userData)),
-    {
-      onSuccess({ payload }, userData) {
-        if (
-          payload.message === PasswordRegistrationErrorsDictionary.PHONE_EXIST
-        ) {
-          notifyError({
-            title: 'Este número ya está siendo usado',
-            subtitle: `Por favor ingrese uno nuevo`,
-          });
-          return;
-        }
-        dispatch(
-          setSplash({
-            show: true,
-            type: ContextSplashEnum.AUTH_REGISTER_COMPLETED,
-          })
-        );
-        sendGMT(GMTEnum.REGISTRATION_COMPLETED, userData.transac_id); // Send GMT when success registration
-        setTimeout(() => {
-          router.push('/');
-        }, 5000);
-      },
-    }
-  );
-
-  const { mutate: validateMutation, isLoading: loadValidatePassword } =
-    useMutation(
-      (userData: TRecoverValidateForm) =>
-        dispatch(AuthService().validateRecoverCode(userData)),
-      {
-        onSuccess({ payload }) {
-          if (
-            ValidateRecoverErrorsDictionary.CODE_EXPIRED === payload.message
-          ) {
-            notifyError({
-              title: 'Tiempo vencido',
-              subtitle: `Por favor, solicita un nuevo código`,
-            });
-            return;
-          }
-          if (payload.message) {
-            notifyError({
-              title: 'Código no coincide',
-              subtitle: `Por favor, inténtalo de nuevo.`,
-            });
-            return;
-          }
-
-          setResetStep(2);
-          resetForm.setValue('code', validateForm.watch('code'));
-        },
-      }
-    );
-
-  const {
-    mutate: sendEmailCreationPasswordMutation,
-    isLoading: loadEmailCreationPassword,
-  } = useMutation(
-    () => dispatch(AuthService().sendEmailCreationPassword(currentEmail)),
-    {
-      onSuccess(data) {
-        if (data.payload.message) {
-          if (
-            data.payload.message ===
-            SendEmailCreateErrorsDictionary.LIMIT_SHIPMENTS
-          ) {
-            setFacialState(4);
-          }
-          return;
-        }
-        setIsOpenResend(true);
-        return;
-      },
-    }
-  );
-
-  const { mutate: editEmailMutation, isLoading: loadEditEmail } = useMutation(
-    (userData: TUpdateEmailForm) =>
-      dispatch(AuthService().updateEmailCustomer(userData)),
-    {
-      onSuccess(data) {
-        if (data.payload.message) {
-          if (
-            data.payload.message ===
-            UpdateEmailCustomerErrorsDictionary.EMAIL_EXIST
-          ) {
-            updateEmailForm.setError('email', {
-              message: 'El correo se encuentra registrado.',
-            });
-          }
-          return;
-        } else {
-          setRegisterStep(
-            CollaboratorRegisterStepEnum.OPEN_IDENTITY_VALIDATION
-          );
-          verifyForm.setValue('email', updateEmailForm.getValues('email'));
-          setCurrentEmail(updateEmailForm.getValues('email'));
-        }
-      },
-    }
-  );
-
-  const { mutate: resetPasswordMutation, isLoading: loadResetPassword } =
-    useMutation(
-      (userData: TResetPasswordForm) =>
-        dispatch(AuthService().resetPassword(userData)),
-      {
-        onSuccess(data) {
-          if (data.payload.message) {
-            return;
-          } else {
-            dispatch(
-              setSplash({
-                show: true,
-                type: ContextSplashEnum.AUTH_RECOVERY_COMPLETED,
-              })
-            );
-            setTimeout(() => {
-              router.push('/');
-            }, 5000);
-          }
-        },
-      }
-    );
-
   const logoutMutation = useMutation(
     () => dispatch(AuthService().logoutCustomer()),
     {
@@ -671,109 +256,12 @@ export const useAuthentication = () => {
     }
   );
 
-  const submitGenerate: SubmitHandler<TRecoverGenerateForm> = async (
-    values
-  ) => {
-    generateForm.setValue('resend', false);
-    await handleReCaptchaVerify();
-    generateMutation(values);
-  };
-
-  const submitResendGenerate = async () => {
-    generateForm.setValue('resend', true);
-    await handleReCaptchaVerify();
-    generateMutation(generateForm.getValues());
-  };
-
-  const submitValidate: SubmitHandler<TRecoverValidateForm> = async (
-    values
-  ) => {
-    await handleReCaptchaVerify();
-    validateMutation(values);
-  };
-
-  const submitReset: SubmitHandler<TResetPasswordForm> = async (values) => {
-    await handleReCaptchaVerify();
-    resetPasswordMutation(values);
-  };
 
   const submitLogin: SubmitHandler<TLoginForm> = async (values) => {
     await handleReCaptchaVerify();
     loginMutation(values);
   };
 
-  const submitDocumentValidation: SubmitHandler<
-    TDocumentValidationForm
-  > = async (values) => {
-    if (
-      ![SpectrumDocumentType.CE, SpectrumDocumentType.DNI].includes(
-        values.tipoIdentidad as SpectrumDocumentType
-      ) 
-    ) {
-      sendProspectForm.setValue('number_document', values.numIdentidad);
-      sendProspectForm.setValue('document_type', values.tipoIdentidad);
-      setOpenFormDocument(true);
-      return;
-    }
-    await handleReCaptchaVerify();
-    documentValidationMutation(values);
-  };
-
-  const submitUpdateEmail: SubmitHandler<TUpdateEmailForm> = (values) => {
-    editEmailMutation(values);
-  };
-
-  const submitCreatePassword: SubmitHandler<TCreatePasswordForm> = (values) => {
-    const { accept_data_treatment, accept_terms_conditions } =
-      createPasswordForm.getValues();
-    createPasswordMutation({
-      ...values,
-      accept_data_treatment,
-      accept_terms_conditions,
-    });
-  };
-
-  const submitVerify: SubmitHandler<TVerifyForm> = (values) => {
-    verifyEmailMutation(values);
-  };
-  const submitSendProspect: SubmitHandler<TSendProspectForm> = (values) => {
-    sendProspectMutation(values);
-  };
-
-  const submitDocument: SubmitHandler<TRegisterEmailForm> = async (values) => {
-    registerEmailMutation({
-      email: values.email,
-      numIdentidad: documentValidationForm.getValues('numIdentidad'),
-      tipoIdentidad: documentValidationForm.getValues('tipoIdentidad'),
-    });
-  };
-
-  const submitPasswordRegistration: SubmitHandler<TPasswordRegistrationForm> = (
-    values
-  ) => {
-    // eslint-disable-next-line unused-imports/no-unused-vars
-    const { password_confirmation, ...commonProperties } = values;
-    updatePasswordRegistrationMutation({
-      ...commonProperties,
-      phone_number:
-        commonProperties.phone_country + commonProperties.phone_number,
-    });
-  };
-
-  const submitSendEmail = async () => {
-    await handleReCaptchaVerify();
-    isCollaborator === '0'
-      ? sendEmailValidationMutation({
-        email: registerEmailForm.getValues('email'),
-        numIdentidad: documentValidationForm.getValues('numIdentidad'),
-        tipoIdentidad: documentValidationForm.getValues('tipoIdentidad'),
-      })
-      : documentValidationMutation(documentValidationForm.getValues());
-  };
-
-  const submitSendEmailCreation = () => {
-    sendEmailCreationPasswordMutation();
-  };
 
   return {
     forms: {
@@ -790,57 +278,16 @@ export const useAuthentication = () => {
       sendProspectForm,
     },
     resetStep,
-    registerStep,
-    setRegisterStep,
-    facialState,
-    setFacialState,
     currentEmail,
     setIsCollaborator,
     currentDNI,
     isCollaborator,
-    setAutocaptureState,
-    autocaptureState,
     currentTypeDocument,
-    attempts: {
-      verifyAttempt,
-      setVerifyAttempt,
-    },
-    timers: {
-      emailRecoverTimer: {
-        setTimer: setRecoverTimer,
-        timer: recoverTimer,
-      },
-    },
     submitHandlers: {
-      submitGenerate,
-      submitValidate,
-      submitReset,
       submitLogin,
-      submitVerify,
-      submitDocument,
-      submitSendEmail,
-      submitResendGenerate,
-      submitPasswordRegistration,
-      submitDocumentValidation,
-      submitUpdateEmail,
-      submitSendEmailCreation,
-      submitCreatePassword,
-      submitSendProspect,
     },
     loaders: {
       loadLogin,
-      loadDocument,
-      loadEmailValidation,
-      loadGeneratePassword,
-      loadValidatePassword,
-      loadResetPassword,
-      loadVerifyEmail,
-      loadPasswordRegistration,
-      loadDocumentValidation,
-      loadEditEmail,
-      loadEmailCreationPassword,
-      loadCreatePassword,
-      loadSendProspect,
     },
     modal: {
       isOpenResend,
@@ -858,7 +305,6 @@ export const useAuthentication = () => {
     },
     mutations: {
       logoutMutation,
-      sendProspectMutation,
     },
   };
 };
