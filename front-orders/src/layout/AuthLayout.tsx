@@ -27,8 +27,6 @@ import { ICountryResponse } from '@/common/interfaces';
 import { IGlobalDocumentsResponse } from '@/common/interfaces/global.config.interface';
 import { setGlobalDocuments } from '@/redux/common/globalSlice';
 import { setSplash } from '@/redux/common/layoutSlice';
-import { GlobalService } from '@/services';
-import { ClientInfoService } from '@/services/ClientInfoService';
 
 interface IProps {
   children: React.ReactNode;
@@ -62,23 +60,6 @@ export const AuthLayout = ({
   const dispatch = useAppDispatch();
   const router = useRouter();
   const deviceType = useAppSelector((state) => state.layout.deviceType);
-
-  useQuery<IGlobalDocumentsResponse>(
-    ['global-documents'],
-    () => GlobalService().globalDocuments(),
-    {
-      keepPreviousData: true,
-      staleTime: 60000,
-      onSuccess: ({ data }) => {
-        dispatch(setGlobalDocuments(data));
-      },
-    }
-  );
-
-  const { data: countryData, isLoading: loadCountry } =
-    useQuery<ICountryResponse>(['countries-list'], () =>
-      ClientInfoService().getCountries()
-    );
 
   return (
     <section className='grid max-h-full min-h-full grid-cols-1 overflow-x-hidden lg:grid-cols-2'>
@@ -129,34 +110,6 @@ export const AuthLayout = ({
               </div>
             )}
 
-            <div className='mb-10 flex items-center justify-between lg:mb-14'>
-              {form && (
-                <div
-                  className={clsx(
-                    'relative flex h-10 w-20 items-center justify-end'
-                  )}
-                >
-                  {loadCountry ? (
-                    <Spinner />
-                  ) : (
-                    <Select
-                      keyDisplay='description'
-                      keySearchCondition='description'
-                      keySearchValue='description'
-                      keyValue='description'
-                      list={(countryData?.data as any) ?? []}
-                      name='place_birth'
-                      onChange={(place_birth: string) => {
-                        form.setValue('place_birth', place_birth);
-                      }}
-                      country
-                      placeholder='Lugar de nacimiento'
-                      form={form}
-                    />
-                  )}
-                </div>
-              )}
-            </div>
             {steps?.toString().length && (
               <span className='mb-4 text-sm font-bold leading-5 !text-primary-500'>
                 {`Paso ${steps + 1} de ${totalSteps}`.toUpperCase()}

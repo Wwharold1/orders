@@ -10,9 +10,6 @@ import {
   ContextSidebarEnum,
   ContextSplashEnum,
 } from '@/common/enums';
-import {
-  LoginErrorsDictionary,
-} from '@/common/enums/custom-errors.dictionary';
 import { removeQueryParams } from '@/common/helper/queryParams';
 import { useAppDispatch } from '@/common/hooks/redux-hooks';
 import {
@@ -130,17 +127,6 @@ export const useAuthentication = () => {
           });
           loginForm.resetField('password');
 
-          if (
-            message[0] === LoginErrorsDictionary.USER_BLOQUED ||
-            message[0] === LoginErrorsDictionary.USER_DISABLED
-          ) {
-            notifyError({
-              title: 'Usuario no autorizado',
-              subtitle: `Para continuar, comuníquese con`,
-              bolded: 'backoffice@prudentialsaf.com.pe',
-            });
-            return;
-          }
           if (message[1].length === 1) {
             notifyError({
               title: 'Tus credenciales son incorrectas',

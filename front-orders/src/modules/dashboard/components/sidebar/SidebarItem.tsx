@@ -6,7 +6,6 @@ import React, { FC } from 'react';
 import { Modal } from '@/common/components';
 import { IconDanger } from '@/common/components/icons/utils/IconDanger';
 import { ContextRoutesEnum, MediaQueryEnum } from '@/common/enums';
-import { ProcessRoutesEnum } from '@/common/enums/process.routes.enum';
 import { useStateCallback } from '@/common/hooks';
 import { useAppDispatch, useAppSelector } from '@/common/hooks/redux-hooks';
 import useMediaQuery from '@/common/hooks/useMediaQuery';
@@ -46,17 +45,6 @@ export const SidebarItem: FC<IProps> = ({ option, isSelected, controls }) => {
           !sidebarOpened && !isLgDown ? 'w-12 justify-center' : 'justify-start'
         )}
         onClick={() => {
-          isLgDown && controls.start('closed');
-          if (
-            Object.values(ProcessRoutesEnum)
-              .map((e) => router.pathname.includes(e))
-              .includes(true)
-          ) {
-            setOpenModalInterrupt(true);
-          } else {
-            router.push(ContextRoutesEnum.DASHBOARD);
-            dispatch(setSidebar(option.type));
-          }
         }}
       >
         <option.icon fill={isSelected ? 'white' : 'rgb(0 123 195 / 0.75)'} />
