@@ -61,11 +61,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\source\\repos\\Order\\OrdersAPI\\ServicioOrders.Infrastructure.CrossCutting.Utility\\ServicioOrders.Infrastructure.CrossCutting.Utility.csproj",
+      "projectUniqueName": "C:\\Users\\User\\source\\repos\\orders\\OrdersAPI\\ServicioOrders.Infrastructure.CrossCutting.Utility\\ServicioOrders.Infrastructure.CrossCutting.Utility.csproj",
       "projectName": "ServicioOrders.Infrastructure.CrossCutting.Utility",
-      "projectPath": "C:\\Users\\User\\source\\repos\\Order\\OrdersAPI\\ServicioOrders.Infrastructure.CrossCutting.Utility\\ServicioOrders.Infrastructure.CrossCutting.Utility.csproj",
+      "projectPath": "C:\\Users\\User\\source\\repos\\orders\\OrdersAPI\\ServicioOrders.Infrastructure.CrossCutting.Utility\\ServicioOrders.Infrastructure.CrossCutting.Utility.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\source\\repos\\Order\\OrdersAPI\\ServicioOrders.Infrastructure.CrossCutting.Utility\\obj\\",
+      "outputPath": "C:\\Users\\User\\source\\repos\\orders\\OrdersAPI\\ServicioOrders.Infrastructure.CrossCutting.Utility\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

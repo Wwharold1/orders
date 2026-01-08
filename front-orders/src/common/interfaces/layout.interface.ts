@@ -15,6 +15,7 @@ export interface ISidebarSchema {
   title:
     | 'Inicio'
     | 'Cuentas'
+    | 'Ordenes'
     | 'Movimientos'
     | 'Perfil'
     | 'Contactar a soporte'

@@ -55,39 +55,14 @@ export const SidebarOptions: ISidebarSchema[] = [
     title: 'Inicio',
     type: ContextSidebarEnum.HOME,
     icon: IconHome,
-  },
-  {
-    title: 'Cuentas',
-    type: ContextSidebarEnum.ACCOUNTS,
-    icon: IconAccount,
-  },
-  {
-    title: 'Movimientos',
-    type: ContextSidebarEnum.MOVEMENTS,
-    icon: IconMovement,
-  },
-  {
-    title: 'Perfil',
-    type: ContextSidebarEnum.PROFILE,
-    icon: IconPerson,
-  },
+  }
 ];
 
 export const BottomSidebarOptions: ISidebarSchema[] = [
   {
-    title: 'Contactar a soporte',
-    type: ContextBottomSidebarEnum.SUPPORT,
-    icon: IconSupport,
-  },
-  {
     title: 'Cerrar sesión',
     type: ContextBottomSidebarEnum.LOGOUT,
     icon: IconLogout,
-  },
-  {
-    title: 'Eliminar cuenta',
-    type: ContextBottomSidebarEnum.DELETE,
-    icon: IconDelete,
   },
 ];
 
@@ -145,6 +120,14 @@ export const InvestmentTabs: ITabs[] = [
     title: 'Constancia',
   },
 ];
+
+export const OrderTabs: ITabs[] = [
+  {
+    id: 0,
+    title: 'Detalle',
+  },
+];
+
 
 export const ContextTabs: ITabs[] = [
   {

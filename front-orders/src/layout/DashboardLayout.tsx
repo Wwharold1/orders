@@ -24,7 +24,6 @@ import { useAppDispatch, useAppSelector } from '@/common/hooks/redux-hooks';
 import InactivityHandler from '@/common/hooks/useIdleTimer';
 import useMediaQuery from '@/common/hooks/useMediaQuery';
 import { useAuthentication } from '@/modules/auth/hooks/useAuthentication';
-import { PrudentialLogo } from '@/modules/dashboard/components/logos';
 import { Sidebar } from '@/modules/dashboard/components/sidebar/Sidebar';
 import {
   setSidebar,
@@ -119,7 +118,6 @@ export const DashboardLayout = ({ children, routeBack }: IProps) => {
                       animate={{ width: '100%' }}
                       className='scale-90 pl-3'
                     >
-                      <PrudentialLogo />
                     </motion.div>
                   </div>
                   <div className='hidden items-center text-xl font-bold tracking-wider lg:flex lg:text-3xl'>

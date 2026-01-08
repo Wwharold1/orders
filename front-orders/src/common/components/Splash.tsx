@@ -11,7 +11,6 @@ import { useWindowSize } from '@/common/hooks';
 import { useAppDispatch, useAppSelector } from '@/common/hooks/redux-hooks';
 import useMediaQuery from '@/common/hooks/useMediaQuery';
 import useMediaQueryHeight from '@/common/hooks/useMediaQueryHeight';
-import { PrudentialLogo } from '@/modules/dashboard/components/logos/PrudentialLogo';
 import { setSplash } from '@/redux/common/layoutSlice';
 
 interface IProps {
@@ -93,7 +92,6 @@ export const Splash: FC<IProps> = ({
           isSmDown ? 'mt-10 scale-90' : isLgDown ? 'scale-90' : 'scale-125'
         )}
       >
-        <PrudentialLogo />
       </div>
     </Transition>
   );

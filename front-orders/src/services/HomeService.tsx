@@ -1,16 +1,17 @@
 import { isAxiosError } from 'axios';
 
-import { IListFundsByCustomerResponse } from '@/common/interfaces';
+import { IListOrderResponse } from '@/common/interfaces';
 import { apiUrl } from '@/common/utils/axios';
+import { TCreateOrderForm, TDeleteOrderForm, TUpdateOrderForm } from '@/modules/dashboard/helpers/orderValidationSchema';
 
-const homeUrl = '/home';
+const orderUrl = '/orders';
 
 export const HomeService = () => {
-  const listFundsByCustomer = async () => {
+  const listOrders = async () => {
     try {
       return (
-        await apiUrl.get<IListFundsByCustomerResponse>(
-          `${homeUrl}/list-funds-by-customer`
+        await apiUrl.get<IListOrderResponse>(
+          `${orderUrl}/getAll`
         )
       ).data;
     } catch (error) {
@@ -20,9 +21,45 @@ export const HomeService = () => {
     }
   };
 
-  const userExistsInSpectrum = async () => {
+  const createOrder = async (data: TCreateOrderForm) => {
     try {
-      return (await apiUrl.post<boolean>(`${homeUrl}/exists-in-spectrum`)).data;
+      return (
+        await apiUrl.post(`${orderUrl}/create`, {
+          ...data,
+        })
+      ).data;
+    } catch (error) {
+      if (isAxiosError(error)) {
+        return error.response?.data;
+      }
+    }
+  };
+
+  const updateOrder = async (orderId: number, data: TUpdateOrderForm) => {
+    const request = {
+      Id: orderId,
+      ...data
+    }
+    try {
+      return (
+        await apiUrl.put(`${orderUrl}/update`, {
+          ...request,
+        })
+      ).data;
+    } catch (error) {
+      if (isAxiosError(error)) {
+        return error.response?.data;
+      }
+    }
+  };
+
+  const deleteOrder = async (data: TDeleteOrderForm) => {
+    try {
+      return (
+        await apiUrl.delete(`${orderUrl}/delete`, {
+          data: {...data}
+        })
+      ).data;
     } catch (error) {
       if (isAxiosError(error)) {
         return error.response?.data;
@@ -31,7 +68,9 @@ export const HomeService = () => {
   };
 
   return {
-    listFundsByCustomer,
-    userExistsInSpectrum,
+    listOrders,
+    createOrder,
+    updateOrder,
+    deleteOrder
   };
 };

@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using ServicioOrders.Infrastructure.CrossCutting.Utility.Constants;
 using ServicioOrders.Domain.Core.Exceptions;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 
 namespace ServicioOrders.API.Infrastructure.Filters
 {
@@ -76,7 +78,17 @@ namespace ServicioOrders.API.Infrastructure.Filters
                 context.Result = new BadRequestObjectResult(json);
                 context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
             }
-            else
+            else if (context.Exception is DbUpdateException dbEx)
+            {
+                var json = new JsonErrorResponse
+                {
+                    Messages = new[] { dbEx.Message },
+                    MessageType = NotificationMessageType.FORMFIELDS
+                };
+
+                context.Result = new BadRequestObjectResult(json);
+                context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            } else
             {
                 var json = new JsonErrorResponse
                 {

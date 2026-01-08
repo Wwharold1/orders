@@ -4,14 +4,14 @@ import { SwiperSlide } from 'swiper/react';
 import { Carousel } from '@/common/components/Carousel';
 import { MediaQueryEnum } from '@/common/enums';
 import useMediaQuery from '@/common/hooks/useMediaQuery';
-import { IListFundsByCustomer } from '@/common/interfaces';
+import { IListOrderResponse } from '@/common/interfaces';
 import { InvestmentSerieCard } from '@/modules/home/components/InvestmentSerieCard';
 
 interface IProps {
-  listFundsData: IListFundsByCustomer;
+  listOrdersData: IListOrderResponse;
 }
 
-export const InvestmentCards: FC<IProps> = ({ listFundsData }) => {
+export const InvestmentCards: FC<IProps> = ({ listOrdersData }) => {
   const isLgUp = useMediaQuery(MediaQueryEnum.LG);
 
   return (
@@ -23,12 +23,12 @@ export const InvestmentCards: FC<IProps> = ({ listFundsData }) => {
               allWidth
               investment
               onlyOne
-              items={listFundsData.funds_serie?.length}
+              items={2}
             >
-              {listFundsData.funds_serie.map((fund, index) => {
+              {listOrdersData.data.map((fund, index) => {
                 return (
                   <SwiperSlide key={index + 2}>
-                    <InvestmentSerieCard fundItem={fund} key={index} />
+                    {/* <InvestmentSerieCard fundItem={fund} key={index} /> */}
                   </SwiperSlide>
                 );
               })}
@@ -37,13 +37,13 @@ export const InvestmentCards: FC<IProps> = ({ listFundsData }) => {
             <Carousel
               spaceBetween={20}
               investmentXL
-              allWidth={listFundsData.funds_serie?.length >= 2}
-              items={listFundsData.funds_serie?.length}
+              allWidth={listOrdersData.data?.length >= 2}
+              items={listOrdersData.data?.length}
             >
-              {listFundsData.funds_serie.map((fund, index) => {
+              {listOrdersData.data.map((orden, index) => {
                 return (
                   <SwiperSlide key={index + 2}>
-                    <InvestmentSerieCard fundItem={fund} key={index} />
+                    <InvestmentSerieCard ordenItem={orden} key={index} />
                   </SwiperSlide>
                 );
               })}

@@ -73,26 +73,6 @@ export const Sidebar: FC<IProps> = ({ controls }) => {
                   : 'pl-10'
               )}
             >
-              <motion.div
-                initial={{ width: '100%' }}
-                animate={{ width: '100%' }}
-              >
-                {sidebarOpened || isLgDown ? (
-                  <Image
-                    src='/icons/PrudentialLogoReversedPrimary.svg'
-                    alt='Prudential logo white'
-                    width={165}
-                    height={32}
-                  />
-                ) : (
-                  <Image
-                    src='/icons/PrudentialMountain.svg'
-                    alt='Prudential Mountain'
-                    width={32}
-                    height={32}
-                  />
-                )}
-              </motion.div>
             </Link>
             <SidebarItems controls={controls} />
             <SidebarBottomItems />

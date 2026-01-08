@@ -2,10 +2,7 @@ import React from 'react';
 
 import { useAppSelector } from '@/common/hooks';
 import { DashboardLayout } from '@/layout/DashboardLayout';
-import { BankAccounts } from '@/modules/accounts/BankAccounts';
 import { Home } from '@/modules/home/Home';
-import { Movements } from '@/modules/movements/Movements';
-import { Profile } from '@/modules/profile/Profile';
 
 import { ContextSidebarEnum } from '../../common/enums/layout-types.enum';
 
@@ -27,8 +24,5 @@ export const Dashboard = () => {
 };
 
 const DashboardNavigation = {
-  [ContextSidebarEnum.HOME]: Home,
-  [ContextSidebarEnum.ACCOUNTS]: BankAccounts,
-  [ContextSidebarEnum.MOVEMENTS]: Movements,
-  [ContextSidebarEnum.PROFILE]: Profile,
+  [ContextSidebarEnum.HOME]: Home
 };

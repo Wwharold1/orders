@@ -20,8 +20,7 @@ import riskProfileReducer from '../modules/dashboard/slice/riskProfileSlice';
 import subscriptionLayoutReducer from '../modules/dashboard/slice/subscriptionLayoutSlice';
 import subscriptionSerieSlice from '../modules/dashboard/slice/subscriptionSerieSlice';
 import subscriptionReducer from '../modules/dashboard/slice/subscriptionSlice';
-import rescueLayoutReducer from '../modules/rescue/slice/rescueLayoutSlice';
-import rescueReducer from '../modules/rescue/slice/rescueSlice';
+import orderReducer from '../modules/dashboard/slice/orderSlice';
 
 const persistConfig = (key: string) => {
   return {
@@ -54,9 +53,9 @@ const persistedSubscriptionReducer = persistReducer(
   persistConfig('subscription'),
   subscriptionReducer
 );
-const persistedRescueReducer = persistReducer(
-  persistConfig('rescue'),
-  rescueReducer
+const persitedOrderReducer = persistReducer(
+  persistConfig('order'),
+  orderReducer
 );
 
 const persistedPaymentMethodReducer = persistReducer(
@@ -73,10 +72,9 @@ export const store = configureStore({
     finalBeneficiary: persistedFinalBeneficiaryReducer,
     subscription: persistedSubscriptionReducer,
     subscription_layout: subscriptionLayoutReducer,
-    rescue_layout: rescueLayoutReducer,
-    rescue: persistedRescueReducer,
     payment_method: persistedPaymentMethodReducer,
     subscriptionSerie: subscriptionSerieSlice,
+    order: persitedOrderReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

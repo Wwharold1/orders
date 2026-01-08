@@ -35,6 +35,9 @@ export enum ContextRoutesEnum {
   PROFILE_DOWNLOAD_EECC = '/profile/download-eecc',
   PROFILE_FINAL_BENEFICIARY = '/profile/final-beneficiary',
   PROFILE_CHANGE_RISK = '/profile/change-risk',
+
+  ORDER_CREATE = '/order/create',
+  ORDER_UPDATE = '/order/edit',
 }
 
 export const listProtectedRoutes = Object.values(ContextRoutesEnum);
@@ -67,6 +70,14 @@ export const TopBarRouteName = {
   [ContextRoutesEnum.SUBSCRIPTION_INVESTMENT]: {
     title: 'Nueva inversión',
     subtitle: 'Nueva inversión',
+  },
+   [ContextRoutesEnum.ORDER_CREATE]: {
+    title: 'Nueva orden',
+    subtitle: 'Nueva orden',
+  },
+   [ContextRoutesEnum.ORDER_UPDATE]: {
+    title: 'Editar orden',
+    subtitle: 'Editar orden',
   },
   [ContextRoutesEnum.BIOMETRIC_VALIDATION]: {
     title: 'Nueva inversión',
