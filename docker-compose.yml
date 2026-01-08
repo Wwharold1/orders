@@ -12,6 +12,45 @@ services:
     volumes:
       - sqlserver_data:/var/opt/mssql
     restart: unless-stopped
+    networks:
+      - orders-net
+
+  orders-api:
+    build:
+      context: ./OrdersAPI
+    container_name: orders-api
+    ports:
+      - "8081:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__DefaultConnection: >
+        Server=sqlserver,1433;
+        Database=OrdersDB;
+        User Id=sa;
+        Password=Root1234!;
+        TrustServerCertificate=True;
+    depends_on:
+      - sqlserver
+    networks:
+      - orders-net
+
+  orders-front:
+    build:
+      context: ./front-orders
+    container_name: orders-front
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: http://orders-api:8080
+    depends_on:
+      - orders-api
+    networks:
+      - orders-net
 
 volumes:
   sqlserver_data:
+
+networks:
+  orders-net:
+    driver: bridge

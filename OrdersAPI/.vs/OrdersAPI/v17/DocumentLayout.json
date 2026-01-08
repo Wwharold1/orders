@@ -3,6 +3,22 @@
   "WorkspaceRootPath": "C:\\Users\\User\\source\\repos\\orders\\OrdersAPI\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2BC19D9B-9E22-4DFA-BB90-6C58CFAAA9F5}|ServicioOrders.Infrastructure.Persistence\\ServicioOrders.Infrastructure.Persistence.csproj|c:\\users\\user\\source\\repos\\orders\\ordersapi\\servicioorders.infrastructure.persistence\\seedwork\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2BC19D9B-9E22-4DFA-BB90-6C58CFAAA9F5}|ServicioOrders.Infrastructure.Persistence\\ServicioOrders.Infrastructure.Persistence.csproj|solutionrelative:servicioorders.infrastructure.persistence\\seedwork\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{112C2574-E3F1-493F-8D62-BA154CD8B724}|ServicioOrders.API\\ServicioOrders.API.csproj|c:\\users\\user\\source\\repos\\orders\\ordersapi\\servicioorders.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{112C2574-E3F1-493F-8D62-BA154CD8B724}|ServicioOrders.API\\ServicioOrders.API.csproj|solutionrelative:servicioorders.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{112C2574-E3F1-493F-8D62-BA154CD8B724}|ServicioOrders.API\\ServicioOrders.API.csproj|c:\\users\\user\\source\\repos\\orders\\ordersapi\\servicioorders.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{112C2574-E3F1-493F-8D62-BA154CD8B724}|ServicioOrders.API\\ServicioOrders.API.csproj|solutionrelative:servicioorders.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{112C2574-E3F1-493F-8D62-BA154CD8B724}|ServicioOrders.API\\ServicioOrders.API.csproj|c:\\users\\user\\source\\repos\\orders\\ordersapi\\servicioorders.api\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{112C2574-E3F1-493F-8D62-BA154CD8B724}|ServicioOrders.API\\ServicioOrders.API.csproj|solutionrelative:servicioorders.api\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{112C2574-E3F1-493F-8D62-BA154CD8B724}|ServicioOrders.API\\ServicioOrders.API.csproj|c:\\users\\user\\source\\repos\\orders\\ordersapi\\servicioorders.api\\infrastructure\\filters\\httpglobalexceptionfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{112C2574-E3F1-493F-8D62-BA154CD8B724}|ServicioOrders.API\\ServicioOrders.API.csproj|solutionrelative:servicioorders.api\\infrastructure\\filters\\httpglobalexceptionfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,32 +27,16 @@
       "RelativeMoniker": "D:0:0:{FB856BCA-4045-4F38-8A55-449B3699956B}|ServicioOrders.Application\\ServicioOrders.Application.csproj|solutionrelative:servicioorders.application\\commands\\ordercommand\\createordercommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{112C2574-E3F1-493F-8D62-BA154CD8B724}|ServicioOrders.API\\ServicioOrders.API.csproj|c:\\users\\user\\source\\repos\\orders\\ordersapi\\servicioorders.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{112C2574-E3F1-493F-8D62-BA154CD8B724}|ServicioOrders.API\\ServicioOrders.API.csproj|solutionrelative:servicioorders.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{112C2574-E3F1-493F-8D62-BA154CD8B724}|ServicioOrders.API\\ServicioOrders.API.csproj|c:\\users\\user\\source\\repos\\orders\\ordersapi\\servicioorders.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{112C2574-E3F1-493F-8D62-BA154CD8B724}|ServicioOrders.API\\ServicioOrders.API.csproj|solutionrelative:servicioorders.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{112C2574-E3F1-493F-8D62-BA154CD8B724}|ServicioOrders.API\\ServicioOrders.API.csproj|c:\\users\\user\\source\\repos\\orders\\ordersapi\\servicioorders.api\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{112C2574-E3F1-493F-8D62-BA154CD8B724}|ServicioOrders.API\\ServicioOrders.API.csproj|solutionrelative:servicioorders.api\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FB856BCA-4045-4F38-8A55-449B3699956B}|ServicioOrders.Application\\ServicioOrders.Application.csproj|c:\\users\\user\\source\\repos\\orders\\ordersapi\\servicioorders.application\\commands\\usercommand\\logincommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FB856BCA-4045-4F38-8A55-449B3699956B}|ServicioOrders.Application\\ServicioOrders.Application.csproj|solutionrelative:servicioorders.application\\commands\\usercommand\\logincommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{112C2574-E3F1-493F-8D62-BA154CD8B724}|ServicioOrders.API\\ServicioOrders.API.csproj|c:\\users\\user\\source\\repos\\orders\\ordersapi\\servicioorders.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{112C2574-E3F1-493F-8D62-BA154CD8B724}|ServicioOrders.API\\ServicioOrders.API.csproj|solutionrelative:servicioorders.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FB856BCA-4045-4F38-8A55-449B3699956B}|ServicioOrders.Application\\ServicioOrders.Application.csproj|c:\\users\\user\\source\\repos\\orders\\ordersapi\\servicioorders.application\\auth\\jwttokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FB856BCA-4045-4F38-8A55-449B3699956B}|ServicioOrders.Application\\ServicioOrders.Application.csproj|solutionrelative:servicioorders.application\\auth\\jwttokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1AB4CB3A-64AE-4669-8C13-317912723769}|ServicioOrders.Domain\\ServicioOrders.Domain.csproj|c:\\users\\user\\source\\repos\\orders\\ordersapi\\servicioorders.domain\\aggregatesmodel\\useraggregate\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1AB4CB3A-64AE-4669-8C13-317912723769}|ServicioOrders.Domain\\ServicioOrders.Domain.csproj|solutionrelative:servicioorders.domain\\aggregatesmodel\\useraggregate\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2BC19D9B-9E22-4DFA-BB90-6C58CFAAA9F5}|ServicioOrders.Infrastructure.Persistence\\ServicioOrders.Infrastructure.Persistence.csproj|c:\\users\\user\\source\\repos\\orders\\ordersapi\\servicioorders.infrastructure.persistence\\entityconfigurations\\userconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -130,19 +130,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "DbInitializer.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\orders\\OrdersAPI\\ServicioOrders.Infrastructure.Persistence\\SeedWork\\DbInitializer.cs",
+              "RelativeDocumentMoniker": "ServicioOrders.Infrastructure.Persistence\\SeedWork\\DbInitializer.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\orders\\OrdersAPI\\ServicioOrders.Infrastructure.Persistence\\SeedWork\\DbInitializer.cs",
+              "RelativeToolTip": "ServicioOrders.Infrastructure.Persistence\\SeedWork\\DbInitializer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-08T19:54:09.763Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "HttpGlobalExceptionFilter.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\orders\\OrdersAPI\\ServicioOrders.API\\Infrastructure\\Filters\\HttpGlobalExceptionFilter.cs",
               "RelativeDocumentMoniker": "ServicioOrders.API\\Infrastructure\\Filters\\HttpGlobalExceptionFilter.cs",
               "ToolTip": "C:\\Users\\User\\source\\repos\\orders\\OrdersAPI\\ServicioOrders.API\\Infrastructure\\Filters\\HttpGlobalExceptionFilter.cs",
               "RelativeToolTip": "ServicioOrders.API\\Infrastructure\\Filters\\HttpGlobalExceptionFilter.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAAwwFAAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAgwFAAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-08T16:02:52.542Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "CreateOrderCommandHandler.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\orders\\OrdersAPI\\ServicioOrders.Application\\Commands\\OrderCommand\\CreateOrderCommandHandler.cs",
               "RelativeDocumentMoniker": "ServicioOrders.Application\\Commands\\OrderCommand\\CreateOrderCommandHandler.cs",
@@ -166,19 +179,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\orders\\OrdersAPI\\ServicioOrders.Domain\\AggregatesModel\\UserAggregate\\User.cs",
-              "RelativeDocumentMoniker": "ServicioOrders.Domain\\AggregatesModel\\UserAggregate\\User.cs",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\orders\\OrdersAPI\\ServicioOrders.Domain\\AggregatesModel\\UserAggregate\\User.cs",
-              "RelativeToolTip": "ServicioOrders.Domain\\AggregatesModel\\UserAggregate\\User.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAqwBcAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-07T10:22:35.941Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\orders\\OrdersAPI\\ServicioOrders.API\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "ServicioOrders.API\\Controllers\\AuthController.cs",
@@ -190,7 +191,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "JwtTokenService.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\orders\\OrdersAPI\\ServicioOrders.Application\\Auth\\JwtTokenService.cs",
               "RelativeDocumentMoniker": "ServicioOrders.Application\\Auth\\JwtTokenService.cs",
@@ -202,39 +203,42 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 2,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\orders\\OrdersAPI\\ServicioOrders.API\\appsettings.json",
               "RelativeDocumentMoniker": "ServicioOrders.API\\appsettings.json",
               "ToolTip": "C:\\Users\\User\\source\\repos\\orders\\OrdersAPI\\ServicioOrders.API\\appsettings.json",
               "RelativeToolTip": "ServicioOrders.API\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-01-07T10:21:30.165Z"
+              "WhenOpened": "2026-01-07T10:21:30.165Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "OrdersController.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\orders\\OrdersAPI\\ServicioOrders.API\\Controllers\\OrdersController.cs",
               "RelativeDocumentMoniker": "ServicioOrders.API\\Controllers\\OrdersController.cs",
               "ToolTip": "C:\\Users\\User\\source\\repos\\orders\\OrdersAPI\\ServicioOrders.API\\Controllers\\OrdersController.cs",
               "RelativeToolTip": "ServicioOrders.API\\Controllers\\OrdersController.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAA5wDsAAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAowDkAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-07T15:43:54.717Z"
+              "WhenOpened": "2026-01-07T15:43:54.717Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\orders\\OrdersAPI\\ServicioOrders.API\\Program.cs",
               "RelativeDocumentMoniker": "ServicioOrders.API\\Program.cs",
               "ToolTip": "C:\\Users\\User\\source\\repos\\orders\\OrdersAPI\\ServicioOrders.API\\Program.cs",
               "RelativeToolTip": "ServicioOrders.API\\Program.cs",
-              "ViewState": "AgIAAFQAAAAAAAAAAAAwwIQAAAAKAAAAAAAAAA==",
+              "ViewState": "AgIAAFUAAAAAAAAAAAAAAG0AAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-07T10:24:20.3Z"
+              "WhenOpened": "2026-01-07T10:24:20.3Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -250,7 +254,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "LoginCommand.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\orders\\OrdersAPI\\ServicioOrders.Application\\Commands\\UserCommand\\LoginCommand.cs",
               "RelativeDocumentMoniker": "ServicioOrders.Application\\Commands\\UserCommand\\LoginCommand.cs",

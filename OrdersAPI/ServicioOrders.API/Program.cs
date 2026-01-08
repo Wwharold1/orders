@@ -10,6 +10,7 @@ using ServicioOrders.Infrastructure.CrossCutting.IoC.AutofacModules;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using ServicioOrders.Application.Auth;
+using ServicioOrders.Domain.Core.SeedWork;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -106,13 +107,7 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-// === ? Ejecutar migraciones automáticas al iniciar ===
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<ServicioOrdersContext>();
-    db.Database.Migrate();
-}
-
+await DbInitializer.SeedAsync(app.Services);
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
