@@ -14,12 +14,6 @@ import storage from 'redux-persist/lib/storage';
 import globalReducer from './common/globalSlice';
 import layoutReducer from './common/layoutSlice';
 import sessionReducer from '../modules/auth/slice/authSlice';
-import finalBeneficiaryProfileReducer from '../modules/dashboard/slice/finalBeneficiarySlice';
-import paymentMethodReducer from '../modules/dashboard/slice/paymentMethodSlice';
-import riskProfileReducer from '../modules/dashboard/slice/riskProfileSlice';
-import subscriptionLayoutReducer from '../modules/dashboard/slice/subscriptionLayoutSlice';
-import subscriptionSerieSlice from '../modules/dashboard/slice/subscriptionSerieSlice';
-import subscriptionReducer from '../modules/dashboard/slice/subscriptionSlice';
 import orderReducer from '../modules/dashboard/slice/orderSlice';
 
 const persistConfig = (key: string) => {
@@ -41,26 +35,9 @@ const persistedGlobalReducer = persistReducer(
   persistConfig('global'),
   globalReducer
 );
-const persistedRiskProfileReducer = persistReducer(
-  persistConfig('risk_profile'),
-  riskProfileReducer
-);
-const persistedFinalBeneficiaryReducer = persistReducer(
-  persistConfig('final_beneficiary_profile'),
-  finalBeneficiaryProfileReducer
-);
-const persistedSubscriptionReducer = persistReducer(
-  persistConfig('subscription'),
-  subscriptionReducer
-);
 const persitedOrderReducer = persistReducer(
   persistConfig('order'),
   orderReducer
-);
-
-const persistedPaymentMethodReducer = persistReducer(
-  persistConfig('payment_method'),
-  paymentMethodReducer
 );
 
 export const store = configureStore({
@@ -68,12 +45,6 @@ export const store = configureStore({
     session: persistedSessionReducer,
     layout: persistedLayoutReducer,
     global: persistedGlobalReducer,
-    riskProfile: persistedRiskProfileReducer,
-    finalBeneficiary: persistedFinalBeneficiaryReducer,
-    subscription: persistedSubscriptionReducer,
-    subscription_layout: subscriptionLayoutReducer,
-    payment_method: persistedPaymentMethodReducer,
-    subscriptionSerie: subscriptionSerieSlice,
     order: persitedOrderReducer
   },
   middleware: (getDefaultMiddleware) =>

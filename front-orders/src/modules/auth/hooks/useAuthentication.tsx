@@ -65,15 +65,6 @@ import {
 import { transformTimestamp } from '@/modules/auth/hooks/useErrorTimer';
 import { useGoogleRecaptcha } from '@/modules/auth/hooks/useGoogleRecaptcha';
 import { deleteAuth } from '@/modules/auth/slice/authSlice';
-import {
-  countryValidationSchema,
-  TCountryForm,
-} from '@/modules/dashboard/helpers/naturalClientValidationSchemas';
-import { useInvestment } from '@/modules/dashboard/hooks/useInvestment';
-import { SubscriptionFormEnum } from '@/modules/dashboard/modules/subscription/enum/subscription.form.enum';
-import { setIsFinalBeneficiaryDatabase } from '@/modules/dashboard/slice/finalBeneficiarySlice';
-import { setCustomerRisk } from '@/modules/dashboard/slice/riskProfileSlice';
-import { setNaturalClientTab } from '@/modules/dashboard/slice/subscriptionLayoutSlice';
 import { persistor, store } from '@/redux';
 import { setSidebar, setSplash } from '@/redux/common/layoutSlice';
 import { SpectrumService } from '@/services';
@@ -90,7 +81,6 @@ export const useAuthentication = () => {
   const [resendEmailAttempt, setResendEmailAttempt] =
     useStateCallback<number>(0);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { clearInvestmentFormData } = useInvestment();
   const [isOpenResend, setIsOpenResend] = useStateCallback<boolean>(false);
   const [isOpenNoFunds, setIsOpenNoFunds] = useStateCallback<boolean>(false);
   const [openInvalidModal, setOpenInvalidModal] =
@@ -157,13 +147,6 @@ export const useAuthentication = () => {
     resolver: zodResolver(documentValidationSchema),
   });
 
-  const countryForm = useForm<TCountryForm>({
-    resolver: zodResolver(countryValidationSchema),
-    mode: 'onChange',
-    defaultValues: {
-      place_birth: 'Perú',
-    },
-  });
 
   const verifyForm = useForm<TVerifyForm>({
     resolver: zodResolver(verifyAccountValidationSchema),
@@ -284,7 +267,6 @@ export const useAuthentication = () => {
           }
           //user not found
           setIsCollaborator('0');
-          router.push(ContextRoutesEnum.AUTH_IDENTITY_VALIDATION);
           setCurrentTypeDocument(
             documentValidationForm.getValues('tipoIdentidad')
           );
@@ -403,9 +385,7 @@ export const useAuthentication = () => {
             passwordRegistrationForm.setValue('email', payload.data.email);
             setRegisterStep(RegisterStepEnum.NAME_VALIDATION);
           } else {
-            setTimeout(() => {
-              router.push(ContextRoutesEnum.AUTH_IDENTITY_VALIDATION);
-            }, 5000);
+          
           }
         },
       }
@@ -687,7 +667,6 @@ export const useAuthentication = () => {
         removeQueryParams(); // Remove query params when logout
       },
       onSettled() {
-        clearInvestmentFormData();
       },
     }
   );
@@ -729,13 +708,7 @@ export const useAuthentication = () => {
     if (
       ![SpectrumDocumentType.CE, SpectrumDocumentType.DNI].includes(
         values.tipoIdentidad as SpectrumDocumentType
-      ) ||
-      (values.tipoIdentidad === SpectrumDocumentType.CE &&
-        countryCodesMapping[
-        countryForm.getValues(
-          'place_birth'
-        ) as keyof typeof countryCodesMapping
-        ] === 'US')
+      ) 
     ) {
       sendProspectForm.setValue('number_document', values.numIdentidad);
       sendProspectForm.setValue('document_type', values.tipoIdentidad);
@@ -815,7 +788,6 @@ export const useAuthentication = () => {
       documentValidationForm,
       createPasswordForm,
       sendProspectForm,
-      countryForm,
     },
     resetStep,
     registerStep,

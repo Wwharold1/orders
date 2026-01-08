@@ -14,7 +14,6 @@ import {
 import { useAppSelector, useStateCallback } from '@/common/hooks';
 import useMediaQuery from '@/common/hooks/useMediaQuery';
 import { useAuthentication } from '@/modules/auth/hooks/useAuthentication';
-import { useDeleteAccount } from '@/modules/dashboard/hooks/useDeleteAccount';
 
 export const SidebarBottomItems = () => {
   const {
@@ -27,13 +26,7 @@ export const SidebarBottomItems = () => {
   const isMdDown = useMediaQuery(MediaQueryEnum.MD);
   const [openLogout, setOpenLogout] = useStateCallback<boolean>(false);
   const [openSupport, setOpenSupport] = useStateCallback<boolean>(false);
-  /* const [openFinalBeneficiary, setFinalBeneficiary] =
-    useStateCallback<boolean>(false); */
-  const {
-    mutations: { canDeleteMutation, requestDeleteMutation },
-    modal: { modalState },
-    handlers: { handleModalToggle },
-  } = useDeleteAccount();
+
 
   const { sidebarOpened } = useAppSelector((state) => state.layout);
   const { terms_conditions, email, phone_number } = useAppSelector(
@@ -76,7 +69,6 @@ export const SidebarBottomItems = () => {
                     setOpenSupport(true);
                     break;
                   case ContextBottomSidebarEnum.DELETE:
-                    !canDeleteMutation.isLoading && canDeleteMutation.mutate();
                     break;
                 }
               }}
@@ -95,8 +87,7 @@ export const SidebarBottomItems = () => {
                   {option.title}
                 </p>
               )}
-              {option.type === ContextBottomSidebarEnum.DELETE &&
-                canDeleteMutation.isLoading && <Spinner />}
+        
             </div>
           </li>
         );
@@ -143,114 +134,6 @@ export const SidebarBottomItems = () => {
           o llámanos a{' '}
           <span className='font-bold text-primary-500'>{phone_number}</span> en
           el horario de Lunes a Viernes, de 9:00 a.m. a 6:00 p.m.
-        </p>
-      </Modal>
-      <Modal
-        isOpen={modalState.openAskDeleteAccount}
-        title='¿Está seguro que desea eliminar su cuenta?'
-        setIsOpen={(value: boolean) =>
-          handleModalToggle('openAskDeleteAccount', value)
-        }
-        customIcon={<IconInfo fill='#007BC3' />}
-        confirmationText='Aceptar'
-        secondaryConfirmationText='Cancelar'
-        confirmationCustomFunction={() => requestDeleteMutation.mutate()}
-        extended={isMdDown}
-        disabledPrimary={requestDeleteMutation.isLoading}
-        modalLength={500}
-        closeOnSaved={false}
-        closeIcon
-      >
-        <p className='text-center text-neutral-600'>
-          Al aceptar se enviará una solicitud para ser revisada por nuestro
-          equipo.
-        </p>
-      </Modal>
-      <Modal
-        isOpen={modalState.openDeleteAlreadySended}
-        title='Solicitud ya enviada'
-        setIsOpen={(value: boolean) =>
-          handleModalToggle('openDeleteAlreadySended', value)
-        }
-        customIcon={<IconInfo fill='#007BC3' />}
-        confirmationText='Aceptar'
-        extended={isMdDown}
-        modalLength={500}
-        onlyTitle
-        closeIcon
-      >
-        <p className='text-center text-neutral-600'>
-          Ya has enviado una solicitud para eliminar tu cuenta, por favor espera
-          a que nuestro equipo se comunique contigo
-        </p>
-      </Modal>
-      <Modal
-        isOpen={modalState.openDeleteTermsConditions}
-        title='Procedimiento para eliminar una cuenta'
-        setIsOpen={(value: boolean) =>
-          handleModalToggle('openDeleteTermsConditions', value)
-        }
-        customIcon={<IconDelete fill='#007BC3' />}
-        confirmationText='Ver Términos y condiciones'
-        confirmationCustomFunction={() =>
-          window.open(terms_conditions, '_blank')
-        }
-        extended={isMdDown}
-        modalLength={550}
-        onlyTitle
-        closeIcon
-      >
-        <p className='text-center'>
-          Ya que cuentas con contratos activos, debes seguir los siguientes
-          pasos para eliminar tu cuenta:
-          <br />
-          <br /> i. Enviar un correo electrónico a{' '}
-          <span className='font-bold text-primary-500'>
-            backoffice@prudentialsaf.com.pe
-          </span>{' '}
-          con el asunto: Eliminar Cuenta
-          <br />
-          <br /> ii. Prudential SAF Sociedad Administradora de Fondos S.A.C
-          pasará a evaluar el caso y proceder con la eliminación de datos de
-          acuerdo con la política de tratamiento de datos. <br />
-          <br /> iii. El cliente recibirá una notificación vía correo
-          electrónico.
-        </p>
-      </Modal>
-      <Modal
-        isOpen={modalState.openSuccessDeleteAccount}
-        title='Solicitud de eliminar cuenta enviada'
-        setIsOpen={(value: boolean) =>
-          handleModalToggle('openSuccessDeleteAccount', value)
-        }
-        customIcon={<IconDelete fill='#007BC3' />}
-        confirmationText='Aceptar'
-        extended={isMdDown}
-        modalLength={550}
-        onlyTitle
-        closeIcon
-      >
-        <p className='text-center'>
-          Tu solicitud de eliminar cuenta será revisada por nuestro equipo, nos
-          comunicaremos en la brevedad posible.
-        </p>
-      </Modal>
-      <Modal
-        isOpen={modalState.openErrorDeleteAccount}
-        title='Error al eliminar cuenta'
-        setIsOpen={(value: boolean) =>
-          handleModalToggle('openErrorDeleteAccount', value)
-        }
-        customIcon={<IconDelete fill='#007BC3' />}
-        confirmationText='Aceptar'
-        extended={isMdDown}
-        modalLength={550}
-        onlyTitle
-        closeIcon
-      >
-        <p className='text-center'>
-          Sucedió un error al momento de enviar la solicitud, por favor intente
-          de nuevo.
         </p>
       </Modal>
     </ul>

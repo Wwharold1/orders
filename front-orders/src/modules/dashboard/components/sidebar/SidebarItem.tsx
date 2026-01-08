@@ -11,7 +11,6 @@ import { useStateCallback } from '@/common/hooks';
 import { useAppDispatch, useAppSelector } from '@/common/hooks/redux-hooks';
 import useMediaQuery from '@/common/hooks/useMediaQuery';
 import { ISidebarSchema } from '@/common/interfaces';
-import { useInvestment } from '@/modules/dashboard/hooks/useInvestment';
 import { setSidebar } from '@/redux/common/layoutSlice';
 
 interface IProps {
@@ -28,8 +27,6 @@ export const SidebarItem: FC<IProps> = ({ option, isSelected, controls }) => {
 
   const [openModalInterrupt, setOpenModalInterrupt] =
     useStateCallback<boolean>(false);
-
-  const { clearInvestmentFormData } = useInvestment();
 
   return (
     <motion.li
@@ -83,7 +80,6 @@ export const SidebarItem: FC<IProps> = ({ option, isSelected, controls }) => {
         confirmationCustomFunction={() => {
           router.push(ContextRoutesEnum.DASHBOARD);
           dispatch(setSidebar(option.type));
-          clearInvestmentFormData();
         }}
         extended
         modalLength={500}
