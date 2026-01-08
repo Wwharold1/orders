@@ -1,21 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useQuery } from '@tanstack/react-query';
 import clsx from 'clsx';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { Toaster } from 'react-hot-toast';
 
-import { Button, Spinner } from '@/common/components';
-import { Select } from '@/common/components/Select';
 import { Splash } from '@/common/components/Splash';
 import {
   ContextRoutesEnum,
   ContextSplashEnum,
   DeviceTypeEnum,
-  HeightEnum,
   MediaQueryEnum,
   MediaQueryHeightEnum,
 } from '@/common/enums';
@@ -23,10 +18,6 @@ import { useWindowSize } from '@/common/hooks';
 import { useAppDispatch, useAppSelector } from '@/common/hooks/redux-hooks';
 import useMediaQuery from '@/common/hooks/useMediaQuery';
 import useMediaQueryHeight from '@/common/hooks/useMediaQueryHeight';
-import { ICountryResponse } from '@/common/interfaces';
-import { IGlobalDocumentsResponse } from '@/common/interfaces/global.config.interface';
-import { setGlobalDocuments } from '@/redux/common/globalSlice';
-import { setSplash } from '@/redux/common/layoutSlice';
 
 interface IProps {
   children: React.ReactNode;
@@ -54,10 +45,8 @@ export const AuthLayout = ({
   totalSteps,
   form,
 }: IProps) => {
-  const isMdDown = useMediaQuery(MediaQueryEnum.MD);
   const isSmdDown = useMediaQueryHeight(MediaQueryHeightEnum.SMD);
   const { height } = useWindowSize();
-  const dispatch = useAppDispatch();
   const router = useRouter();
   const deviceType = useAppSelector((state) => state.layout.deviceType);
 
@@ -136,100 +125,6 @@ export const AuthLayout = ({
       )}
       <Toaster />
       <Splash context={ContextSplashEnum.AUTH} />
-      <Splash size={2} context={ContextSplashEnum.AUTH_EMAIL_VERIFIED}>
-        <div className='flex flex-col items-center justify-center'>
-          <h1 className='mb-3 mt-5 text-lg font-semibold md:mt-8 md:text-3xl'>
-            ¡Excelente!
-          </h1>
-          <p className='text-center text-base font-light md:text-lg'>
-            Tu correo fue verificado. <br /> Continuemos con el proceso.
-          </p>
-        </div>
-      </Splash>
-      <Splash size={2} context={ContextSplashEnum.IDENTITY_VALIDATION_SUCCESS}>
-        <div className='flex flex-col items-center justify-center'>
-          <Image
-            src='/icons/IdentityValidation.svg'
-            alt='Recovery completed icon'
-            width={isMdDown || height < HeightEnum.MD ? 90 : 120}
-            height={isMdDown || height < HeightEnum.MD ? 90 : 120}
-          />
-          <h1 className='mb-3 mt-5 text-center text-lg font-semibold md:mt-8 md:text-3xl'>
-            ¡Reconocimiento biométrico exitoso!{' '}
-          </h1>
-          <p className='text-center text-base font-light md:text-lg'>
-            Ya puedes continuar con el registro.
-          </p>
-        </div>
-      </Splash>
-      <Splash size={2} context={ContextSplashEnum.AUTH_REGISTER_COMPLETED}>
-        <div className='flex flex-col items-center justify-center'>
-          <Image
-            src='/icons/RegistrationCompleted.svg'
-            alt='Registration completed icon'
-            width={isMdDown ? 90 : 120}
-            height={isMdDown ? 90 : 120}
-          />
-          <h1 className='mb-3 mt-5 text-lg font-semibold md:mt-8 md:text-3xl'>
-            ¡Todo listo!
-          </h1>
-          <p className='text-center text-base font-light md:text-lg'>
-            Ya puedes comenzar a invertir con nosotros.
-          </p>
-        </div>
-      </Splash>
-      <Splash size={2} context={ContextSplashEnum.AUTH_RECOVERY_COMPLETED}>
-        <div className='flex flex-col items-center justify-center'>
-          <Image
-            src='/icons/RecoveryCompleted.svg'
-            alt='Recovery completed icon'
-            width={isMdDown ? 90 : 120}
-            height={isMdDown ? 90 : 120}
-          />
-          <h1 className='mb-3 mt-5 text-lg font-semibold md:mt-8 md:text-3xl'>
-            ¡Todo listo!
-          </h1>
-          <p className='text-center text-base font-light md:text-lg'>
-            Tu contraseña fue actualizada. <br /> Inicia sesión nuevamente.
-          </p>
-        </div>
-      </Splash>
-      <Splash
-        size={2}
-        infinite
-        context={ContextSplashEnum.AUTH_PROSPECT_COMPLETED}
-      >
-        <div className='flex flex-col items-center justify-center'>
-          <Image
-            src='/icons/TypeParticipateCompleted.svg'
-            alt='Recovery completed icon'
-            width={isMdDown || height < HeightEnum.MD ? 90 : 120}
-            height={isMdDown || height < HeightEnum.MD ? 90 : 120}
-          />
-          <h1 className='mb-3 mt-5 text-center text-lg font-semibold md:mt-8 md:text-3xl'>
-            Gracias por tu respuesta{' '}
-          </h1>
-          <p className='text-center text-base font-light md:text-lg'>
-            Un Asesor de Inversiones se contactará contigo para continuar tu
-            proceso.
-          </p>
-          <Button
-            title='Ir al inicio de sesión'
-            handleClick={() => {
-              dispatch(
-                setSplash({
-                  type: ContextSplashEnum.AUTH_PROSPECT_COMPLETED,
-                  show: false,
-                })
-              );
-              router.push('/');
-            }}
-            alternative
-            noBorder
-            className='mt-8 !px-10 !py-0 md:!px-20'
-          />
-        </div>
-      </Splash>
     </section>
   );
 };

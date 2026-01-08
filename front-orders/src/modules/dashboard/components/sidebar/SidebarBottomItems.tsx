@@ -29,9 +29,7 @@ export const SidebarBottomItems = () => {
 
 
   const { sidebarOpened } = useAppSelector((state) => state.layout);
-  const { terms_conditions, email, phone_number } = useAppSelector(
-    (state) => state.global
-  );
+
   const isLgDown = useMediaQuery(MediaQueryEnum.LG);
 
   return (
@@ -111,31 +109,6 @@ export const SidebarBottomItems = () => {
         }
         onlyTitle={router.pathname === ContextRoutesEnum.DASHBOARD}
       ></Modal>
-      <Modal
-        isOpen={openSupport}
-        title='Contactar a soporte'
-        setIsOpen={setOpenSupport}
-        customIcon={<IconContactSupport fill='#007BC3' className='ml-1' />}
-        confirmationText='Entendido'
-        extended={isMdDown}
-        modalLength={400}
-        onlyTitle
-        closeIcon
-      >
-        <p>
-          Para comunicarte con nuestra área de soporte y atención al cliente,
-          escríbenos a{' '}
-          <a
-            href={'mailto:' + email}
-            className='cursor-pointer font-bold text-primary-500 focus-visible:outline-none'
-          >
-            {email}
-          </a>{' '}
-          o llámanos a{' '}
-          <span className='font-bold text-primary-500'>{phone_number}</span> en
-          el horario de Lunes a Viernes, de 9:00 a.m. a 6:00 p.m.
-        </p>
-      </Modal>
     </ul>
   );
 };

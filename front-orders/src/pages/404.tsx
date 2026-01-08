@@ -5,7 +5,6 @@ import * as React from 'react';
 import { Button } from '@/common/components';
 import Seo from '@/common/components/Seo';
 import { ContextRoutesEnum } from '@/common/enums';
-import { PrudentialLogo } from '@/modules/dashboard/components/logos';
 
 export default function NotFoundPage() {
   const router = useRouter();
@@ -49,7 +48,6 @@ export default function NotFoundPage() {
           onClick={() => router.push(ContextRoutesEnum.DASHBOARD)}
           className='absolute bottom-16 left-1/2 z-20 -translate-x-1/2 cursor-pointer'
         >
-          <PrudentialLogo />
         </div>
       </main>
     </React.Fragment>
