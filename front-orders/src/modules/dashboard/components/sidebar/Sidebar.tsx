@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import clsx from 'clsx';
 import { AnimationControls, motion } from 'framer-motion';
-import Image from 'next/image';
 import Link from 'next/link';
 import React, { FC, useEffect } from 'react';
 

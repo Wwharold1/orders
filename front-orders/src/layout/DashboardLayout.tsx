@@ -18,24 +18,17 @@ import {
   removeQueryParams,
   saveQueryParams,
 } from '@/common/helper/queryParams';
-import { useStateCallback, useWindowSize } from '@/common/hooks';
+import { useStateCallback } from '@/common/hooks';
 import { useAppDispatch, useAppSelector } from '@/common/hooks/redux-hooks';
 import InactivityHandler from '@/common/hooks/useIdleTimer';
-import useMediaQuery from '@/common/hooks/useMediaQuery';
-import { useAuthentication } from '@/modules/auth/hooks/useAuthentication';
 import { Sidebar } from '@/modules/dashboard/components/sidebar/Sidebar';
 import {
   setSidebar,
-  setSplash,
-  toggleOpenedAnuallyUpdate,
   toggleSidebarOpened,
 } from '@/redux/common/layoutSlice';
 
 import {
   ContextSidebarEnum,
-  ContextSplashEnum,
-  HeightEnum,
-  MediaQueryEnum,
   SidebarOptions,
 } from '../common/enums/layout-types.enum';
 

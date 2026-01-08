@@ -9,7 +9,7 @@ interface IProps {
   controls: AnimationControls;
 }
 
-export const SidebarItems: FC<IProps> = ({ controls }) => {
+export const SidebarItems: FC<IProps> = () => {
   const { sidebar } = useAppSelector((state) => state.layout);
 
   return (
@@ -21,7 +21,6 @@ export const SidebarItems: FC<IProps> = ({ controls }) => {
             key={index + 1}
             option={option}
             isSelected={isSelected}
-            controls={controls}
           />
         );
       })}

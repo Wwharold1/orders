@@ -4,12 +4,11 @@ import React, { useEffect } from 'react';
 
 import { saveQueryParams } from '@/common/helper/queryParams';
 import { useWindowSize } from '@/common/hooks';
-import { useAppDispatch, useAppSelector } from '@/common/hooks/redux-hooks';
+import { useAppSelector } from '@/common/hooks/redux-hooks';
 import { AuthLayout } from '@/layout/AuthLayout';
 import { AuthButton } from '@/modules/auth/components/AuthButton';
 import { AuthInput } from '@/modules/auth/components/AuthInput';
 import { useAuthentication } from '@/modules/auth/hooks/useAuthentication';
-import { toggleRemembered } from '@/modules/auth/slice/authSlice';
 
 export const Login = () => {
   const {
@@ -18,7 +17,6 @@ export const Login = () => {
     loaders: { loadLogin },
   } = useAuthentication();
   const isRemembered = useAppSelector((state) => state.session.isRemembered);
-  const dispatch = useAppDispatch();
   const { height } = useWindowSize();
 
   useEffect(() => {
@@ -67,7 +65,6 @@ export const Login = () => {
             <input
               type='checkbox'
               checked={isRemembered}
-              onChange={() => dispatch(toggleRemembered())}
               className='h-5 w-5 cursor-pointer rounded border-neutral-300 text-prudential-500 ring-0 duration-75 ease-in hover:bg-gray-50 focus:ring-0 md:h-6 md:w-6'
             />
             <label

@@ -16,9 +16,6 @@ export async function middleware(req: NextRequest) {
   const stayLoggedIn = req.cookies.get('stayLoggedIn')?.value;
   const secretJWT = process.env.NEXT_JWT_SECRET;
   const currentUrl = req.nextUrl.pathname;
-  console.log(sessionCookie, ' sessionCookie')
-  console.log(secretJWT, ' secretJWT')
-  console.log(currentUrl, ' currentUrl')
 
   if (sessionCookie && secretJWT) {
     try {

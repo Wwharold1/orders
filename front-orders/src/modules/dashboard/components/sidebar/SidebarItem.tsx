@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { AnimationControls, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import React, { FC } from 'react';
 
@@ -15,10 +15,9 @@ import { setSidebar } from '@/redux/common/layoutSlice';
 interface IProps {
   option: ISidebarSchema;
   isSelected: boolean;
-  controls: AnimationControls;
 }
 
-export const SidebarItem: FC<IProps> = ({ option, isSelected, controls }) => {
+export const SidebarItem: FC<IProps> = ({ option, isSelected }) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { sidebarOpened } = useAppSelector((state) => state.layout);
@@ -44,8 +43,6 @@ export const SidebarItem: FC<IProps> = ({ option, isSelected, controls }) => {
           !isSelected && 'hover:bg-primary-50/50',
           !sidebarOpened && !isLgDown ? 'w-12 justify-center' : 'justify-start'
         )}
-        onClick={() => {
-        }}
       >
         <option.icon fill={isSelected ? 'white' : 'rgb(0 123 195 / 0.75)'} />
         {(sidebarOpened || isLgDown) && (

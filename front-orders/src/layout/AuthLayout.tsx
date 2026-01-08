@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { UseFormReturn } from 'react-hook-form';
 import { Toaster } from 'react-hot-toast';
 
 import { Splash } from '@/common/components/Splash';
@@ -11,12 +10,10 @@ import {
   ContextRoutesEnum,
   ContextSplashEnum,
   DeviceTypeEnum,
-  MediaQueryEnum,
   MediaQueryHeightEnum,
 } from '@/common/enums';
 import { useWindowSize } from '@/common/hooks';
-import { useAppDispatch, useAppSelector } from '@/common/hooks/redux-hooks';
-import useMediaQuery from '@/common/hooks/useMediaQuery';
+import { useAppSelector } from '@/common/hooks/redux-hooks';
 import useMediaQueryHeight from '@/common/hooks/useMediaQueryHeight';
 
 interface IProps {
@@ -27,12 +24,6 @@ interface IProps {
   footer?: boolean;
   steps?: number;
   totalSteps?: number;
-  form?: UseFormReturn<
-    {
-      place_birth: string;
-    },
-    any
-  > | null;
 }
 
 export const AuthLayout = ({
@@ -43,7 +34,6 @@ export const AuthLayout = ({
   footer = false,
   steps,
   totalSteps,
-  form,
 }: IProps) => {
   const isSmdDown = useMediaQueryHeight(MediaQueryHeightEnum.SMD);
   const { height } = useWindowSize();

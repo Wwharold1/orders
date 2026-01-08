@@ -1,16 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { useRouter } from 'next/router';
+import React, { FC, useEffect } from 'react';
+
 import { Button, Modal } from '@/common/components';
 import { IconDanger } from '@/common/components/icons/utils/IconDanger';
 import { Input } from '@/common/components/Input';
 import { ContextRoutesEnum, MediaQueryEnum } from '@/common/enums';
-import { useAppDispatch, useStateCallback } from '@/common/hooks';
+import { useStateCallback } from '@/common/hooks';
 import useMediaQuery from '@/common/hooks/useMediaQuery';
 import { DashboardLayout } from '@/layout/DashboardLayout';
-import { useRouter } from 'next/router';
-import React, { FC, useEffect } from 'react';
+
 import { useOrder } from '../../hooks/useOrder';
-import { getDDMMYYYYFormat } from '@/common/utils/convert-date';
 import { formatDate } from '../../utils/date';
 export const aceptedImageTypes = ['image/png', 'image/jpg', 'image/jpeg'];
 
@@ -72,8 +73,7 @@ export const Order: FC<IProps> = ({
   return (
     <div className='relative h-full w-full bg-neutral-50'>
       <DashboardLayout routeBack={() => setOpenModalInterrupt(true)}>
-        {(
-          <div className='relative rounded-lg bg-white px-4 pt-6 md:px-6'>
+        <div className='relative rounded-lg bg-white px-4 pt-6 md:px-6'>
                <div key={12322}>
                 <div className='mt-8 grid grid-cols-12 gap-0 pb-20 text-primary-900 md:gap-10 lg:gap-16'>
                   <div className='col-span-12 md:col-span-6 lg:col-span-8'>
@@ -168,7 +168,6 @@ export const Order: FC<IProps> = ({
                 </div>
               </div>
           </div>
-        )}
         <Modal
           isOpen={openModalCancel}
           title='¿Seguro que deseas perder tus cambios?'

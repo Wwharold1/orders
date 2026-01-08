@@ -6,10 +6,7 @@ import {
   optional,
   string,
   TypeOf,
-  z,
 } from 'zod';
-
-import { SpectrumDocumentType } from '@/common/enums';
 
 export const recoverGenerateSchema = object({
   email: string()
@@ -20,48 +17,6 @@ export const recoverGenerateSchema = object({
       'Por favor remueva los espacios en blanco'
     ),
   resend: boolean().default(false),
-});
-
-export const documentValidationSchema = object({
-  tipoIdentidad: string(),
-  numIdentidad: string().min(1, 'Número de documento es requerido'),
-}).superRefine((schema, ctx) => {
-  if (
-    schema.tipoIdentidad === SpectrumDocumentType.DNI &&
-    schema.numIdentidad.length !== 8
-  ) {
-    ctx.addIssue({
-      message: 'El DNI debe tener 8 caracteres',
-      code: z.ZodIssueCode.custom,
-    });
-  }
-  if (
-    schema.tipoIdentidad === SpectrumDocumentType.CE &&
-    schema.numIdentidad.length < 6
-  ) {
-    ctx.addIssue({
-      message: 'El CE debe tener por lo menos 6 caracteres',
-      code: z.ZodIssueCode.custom,
-    });
-  }
-  if (
-    schema.tipoIdentidad === SpectrumDocumentType.PASSPORT &&
-    schema.numIdentidad.length < 6
-  ) {
-    ctx.addIssue({
-      message: 'El pasaporte debe tener por lo menos 6 caracteres',
-      code: z.ZodIssueCode.custom,
-    });
-  }
-  if (
-    schema.tipoIdentidad === SpectrumDocumentType.RUC &&
-    schema.numIdentidad.length < 11
-  ) {
-    ctx.addIssue({
-      message: 'El RUC debe tener por lo menos 11 caracteres',
-      code: z.ZodIssueCode.custom,
-    });
-  }
 });
 
 export const validateRecoverSchema = object({
@@ -212,49 +167,5 @@ export const sendProspectValidationSchema1 = object({
     ),
 });
 
-export const documentTypeValidationSchema = object({
-  number_document: string({
-    required_error: 'Número de documento es requerido',
-  }).min(1, 'Número de documento es requerido'),
-  document_type: string(),
-}).superRefine((schema, ctx) => {
-  if (
-    schema.document_type === SpectrumDocumentType.PASSPORT &&
-    schema.number_document.length < 8
-  ) {
-    ctx.addIssue({
-      message: 'El pasaporte debe tener por lo menos 8 caracteres',
-      code: z.ZodIssueCode.custom,
-      path: ['number_document'],
-    });
-  }
-  if (
-    schema.document_type === SpectrumDocumentType.RUC &&
-    schema.number_document.length < 11
-  ) {
-    ctx.addIssue({
-      message: 'El RUC debe tener por lo menos 11 caracteres',
-      code: z.ZodIssueCode.custom,
-      path: ['number_document'],
-    });
-  }
-});
-
-export const sendProspectValidationSchema = intersection(
-  sendProspectValidationSchema1,
-  documentTypeValidationSchema
-);
-
 export type TLoginForm = TypeOf<typeof loginValidationSchema>;
-export type TRecoverGenerateForm = TypeOf<typeof recoverGenerateSchema>;
-export type TRecoverValidateForm = TypeOf<typeof validateRecoverSchema>;
-export type TResetPasswordForm = TypeOf<typeof resetPasswordSchema>;
-export type TVerifyForm = TypeOf<typeof verifyAccountValidationSchema>;
-export type TDocumentValidationForm = TypeOf<typeof documentValidationSchema>;
-export type TRegisterEmailForm = TypeOf<typeof registerEmailValidationSchema>;
-export type TCreatePasswordForm = TypeOf<typeof createPasswordSchema>;
-export type TUpdateEmailForm = TypeOf<typeof updateEmailValidationSchema>;
-export type TSendProspectForm = TypeOf<typeof sendProspectValidationSchema>;
-export type TPasswordRegistrationForm = TypeOf<
-  typeof passwordRegistrationValidationSchema
->;
+

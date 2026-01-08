@@ -2,9 +2,7 @@ import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import React from 'react';
 
-import { IconDelete, IconLogout, Modal, Spinner } from '@/common/components';
-import { IconContactSupport } from '@/common/components/icons/sidebar/IconContactSupport';
-import IconInfo from '@/common/components/icons/utils/IconInfo';
+import { IconLogout, Modal } from '@/common/components';
 import {
   BottomSidebarOptions,
   ContextBottomSidebarEnum,
@@ -25,7 +23,7 @@ export const SidebarBottomItems = () => {
   const router = useRouter();
   const isMdDown = useMediaQuery(MediaQueryEnum.MD);
   const [openLogout, setOpenLogout] = useStateCallback<boolean>(false);
-  const [openSupport, setOpenSupport] = useStateCallback<boolean>(false);
+  const [, setOpenSupport] = useStateCallback<boolean>(false);
 
 
   const { sidebarOpened } = useAppSelector((state) => state.layout);

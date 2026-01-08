@@ -1,10 +1,12 @@
+import clsx from 'clsx';
 import { useRouter } from 'next/router';
+
+import { Card } from '@/common/components';
+import { IconInvest } from '@/common/components/icons/dashboard';
 import { ContextRoutesEnum } from '@/common/enums';
 import { useAppSelector } from '@/common/hooks';
 import { useHome } from '@/modules/home/hooks/useHome';
-import { Card } from '@/common/components';
-import clsx from 'clsx';
-import { IconInvest } from '@/common/components/icons/dashboard';
+
 import { ProductCards } from './components/ProductCards';
 
 export const Home = () => {

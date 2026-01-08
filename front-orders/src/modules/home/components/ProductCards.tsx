@@ -1,16 +1,17 @@
 /* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import React, { FC } from 'react';
-import { IListOrderResponse } from '@/common/interfaces';
 import clsx from 'clsx';
-import { getDDMMYYYYFormat } from '@/common/utils/convert-date';
-import { Button, IconDelete, Modal } from '@/common/components';
-import { ContextRoutesEnum, MediaQueryEnum } from '@/common/enums';
 import { useRouter } from 'next/router';
-import { useOrder } from '@/modules/dashboard/hooks/useOrder';
-import { useStateCallback } from '@/common/hooks';
+import React, { FC } from 'react';
+
+import { Button, IconDelete, Modal } from '@/common/components';
 import { IconDanger } from '@/common/components/icons/utils/IconDanger';
+import { ContextRoutesEnum, MediaQueryEnum } from '@/common/enums';
+import { useStateCallback } from '@/common/hooks';
 import useMediaQuery from '@/common/hooks/useMediaQuery';
+import { IListOrderResponse } from '@/common/interfaces';
+import { getDDMMYYYYFormat } from '@/common/utils/convert-date';
+import { useOrder } from '@/modules/dashboard/hooks/useOrder';
 
 interface IProps {
   order: IListOrderResponse | undefined;
@@ -33,17 +34,17 @@ export const ProductCards: FC<IProps> = ({ order }) => {
         </div>
       </div>
          <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
-          {order?.data.map((order, index) => {
+          {order?.data.map((order,) => {
             
-            return (<div  onClick={() => { }}
+            return (<div
+            key={order.id} 
             className={clsx(
               'mb-10 cursor-pointer rounded-lg bg-white'
             )}
           >
             {true && order ? (
               <div className='w-full rounded-lg bg-white p-4'>
-                { (
-                  <div
+                <div
                     style={{
                       backgroundImage: `url(https://webinversiones-qa.delfosti.site/images/funds/card-primario.jpg)`,
                       backgroundSize: 'cover',
@@ -77,7 +78,6 @@ export const ProductCards: FC<IProps> = ({ order }) => {
                       fontWeight: 'bold',
                     }}>{getDDMMYYYYFormat(order.orderDate)}</p>
                   </div>
-                )}
                 <div className='px-3 py-6'>
                   <div className='flex justify-between items-center'>
                     <div
@@ -104,7 +104,7 @@ export const ProductCards: FC<IProps> = ({ order }) => {
                               state.setSelectOrder(order);
                               router.push(ContextRoutesEnum.ORDER_UPDATE);
                             }}
-                            title={'Editar'}
+                            title="Editar"
                             className='mt-0'
                           />
                         </div>
