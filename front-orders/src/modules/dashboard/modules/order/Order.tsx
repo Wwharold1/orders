@@ -11,6 +11,7 @@ import { useRouter } from 'next/router';
 import React, { FC, useEffect } from 'react';
 import { useOrder } from '../../hooks/useOrder';
 import { getDDMMYYYYFormat } from '@/common/utils/convert-date';
+import { formatDate } from '../../utils/date';
 export const aceptedImageTypes = ['image/png', 'image/jpg', 'image/jpeg'];
 
 export enum OrderModeEnum {
@@ -49,7 +50,7 @@ export const Order: FC<IProps> = ({
   useEffect(() => {
     if (state.selectOrder) {
       forms.updateOrderForm.setValue('customer', state.selectOrder.customer);
-      forms.updateOrderForm.setValue('orderDate', getDDMMYYYYFormat(state.selectOrder.orderDate));
+      forms.updateOrderForm.setValue('orderDate',  formatDate(new Date(state.selectOrder.orderDate)));
       forms.updateOrderForm.setValue('orderNumber', state.selectOrder.orderNumber);
       forms.updateOrderForm.setValue('total', state.selectOrder.total);
     }
@@ -118,11 +119,11 @@ export const Order: FC<IProps> = ({
                           formRegister={form.register}
                           error={form.formState.errors}
                           name='orderDate'
-                          noWhiteSpace
-                          noPadding
-                          form={form}
                           placeholder='Fecha de Orden'
+                          noPadding
+                          noWhiteSpace
                           type='date'
+                          form={form}
                         />
                       </div>
                     </div>

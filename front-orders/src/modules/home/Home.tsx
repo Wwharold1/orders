@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router';
-import { useDispatch } from 'react-redux';
 import { ContextRoutesEnum } from '@/common/enums';
 import { useAppSelector } from '@/common/hooks';
 import { useHome } from '@/modules/home/hooks/useHome';
